@@ -38,3 +38,11 @@ def camel_case( text ):
         else:
             new_text += char
     return new_text
+
+''' Takes a string input and returns the same string
+with pascal case formatting
+'''
+def pascal_case( text ):
+	# Camel case and cap the first letter
+	new_text = camel_case( text )
+	return str( new_text[0].upper() ) + str( new_text[1:] )
