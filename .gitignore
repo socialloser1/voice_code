@@ -63,3 +63,6 @@ target/
 
 # Compiled files
 .pyc
+
+# For testing ideas
+main.py
