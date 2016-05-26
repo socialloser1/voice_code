@@ -46,3 +46,12 @@ def pascal_case( text ):
 	# Camel case and cap the first letter
 	new_text = camel_case( text )
 	return str( new_text[0].upper() ) + str( new_text[1:] )
+
+''' Takes a string and returns it in all
+lowercase without white spaces'''
+def no_space_lower( text ):
+	new_text = ""
+	for word in str( text ).lower().split():
+		new_text += word
+	return new_text
+    
