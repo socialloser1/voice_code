@@ -25,16 +25,16 @@ def snake_case( text ):
 with camel case formatting
 '''
 def camel_case( text ):
-    newText = ""
+    new_text = ""
     text = str( text ).lower()
-    capNext = False
+    cap_next = False
 
     for char in text:
         if char == " " :
-            capNext = True
-        elif capNext:
-            newText += char.upper()
-            capNext = False
+            cap_next = True
+        elif cap_next:
+            new_text += char.upper()
+            cap_next = False
         else:
-            newText += char
-    return newText
+            new_text += char
+    return new_text
