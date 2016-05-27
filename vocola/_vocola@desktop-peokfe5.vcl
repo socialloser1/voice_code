@@ -61,10 +61,14 @@ Sanno                                 = { Ctrl + s };
 
 Indent                                = {Space_4};
 Prain                                 = '(  )' {Left_2};
+Okra                                  = '{';
 Krax                                  = '{}' {Left};
 Brax                                  = '[]' {Left};
-Squotes                               = "'  '" { Left_2 };
-Duotes                                = '"  "' { Left_2 }; 
+Obra                                  = '[';
+Squotes                               = "''" { Left };
+Duotes                                = '""' { Left };
+Ossi quo                              = "'";
+Ossi duo                              = '"';
 
 # Bash commands
 Chadirr                               = {c} {d} {Space};
