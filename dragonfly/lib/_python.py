@@ -23,7 +23,7 @@ from dragonfly import (
 As of right now, this function is not working properly!
 '''
 def doc_string():
-    Text("''''''").execute()
+    Text("' ' ' ' ' ' ").execute()
     Key("left:3").execute()
 
 ''' Function that prints out a Python function definition,
@@ -33,6 +33,7 @@ def def_function(text):
     Text("def " + format.snake_case(str(text)) + "():").execute()
     Key("left:2").execute()
 
+''' The MappingRule for this module.'''
 class MainRule( MappingRule ):
 
 	mapping = { 
