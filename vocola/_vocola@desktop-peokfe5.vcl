@@ -15,12 +15,18 @@ D dunk                                = { Enter_2 };
 T dunk                                = { Enter_3 };
 Mup                                   = {Up};
 
+Mup 2..99                             = {Up_$1};
 Dup                                   = {Down};
 
+Dup 2..99                             = {Down_$1};
+Meft                                  = {Left};
+Meft 2..99                            = {Left_$1};
+Might                                 = {Right};
+Might 2..99                           = {Right_$1};
 E line                                = {End};
 
-Del line                              = {End} {Shift + Home} {Del};
-C line                                = {End} {Shift + Home};
+Dline                                 = {End} {Shift + Home} {Del};
+Sline                                 = {End} {Shift + Home};
 
 
 Bo line                               = {Home};
@@ -31,6 +37,8 @@ Cleft 1..99                           = { Ctrl + Left_$1 };
 Crait                                 = { Ctrl + Right };
 Crait 1..99                           = { Ctrl + Right_$1 };
 Fithi                                 = { Ctrl + f };
+Seep                                  = {Space};
+Seep 2..99                            = {Space_$1};
 
 # Killing and yanking and stuff
 
@@ -74,3 +82,4 @@ Ossi duo                              = '"';
 Chadirr                               = {c} {d} {Space};
 Ellis                                 = {l} {s} { Space };
 Tilde                                 = '~';
+
