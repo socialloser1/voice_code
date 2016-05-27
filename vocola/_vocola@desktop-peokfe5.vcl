@@ -30,13 +30,13 @@ De line                               = {End} {Shift + Home} {Del};
 
 
 Bo line                               = {Home};
-Seco line                             = { End } ';';                    # Semicolon at end of line
-Reco line                             = { End } ':';
-Cleft                                 = { Ctrl + Left };
-Cleft 1..99                           = { Ctrl + Left_$1 };
-Crait                                 = { Ctrl + Right };
-Crait 1..99                           = { Ctrl + Right_$1 };
-Fithi                                 = { Ctrl + f };
+Seco line                             = {End} ';';                    # Semicolon at end of line
+Reco line                             = {End} ':';
+Cleft                                 = {Ctrl + Left};
+Cleft 1..99                           = {Ctrl + Left_$1};
+Crait                                 = {Ctrl + Right};
+Crait 1..99                           = {Ctrl + Right_$1};
+Fithi                                 = {Ctrl + f};
 Seep                                  = {Space};
 Seep 2..99                            = {Space_$1};
 
@@ -68,15 +68,17 @@ Sanno                                 = { Ctrl + s };
 # General formatting
 
 Indent                                = {Space_4};
-Prain                                 = '(  )' {Left_2};
+Prain                                 = '()' {Left};
 Okra                                  = '{';
 Krax                                  = '{}' {Left};
 Brax                                  = '[]' {Left};
 Obra                                  = '[';
-Squotes                               = "''" { Left };
-Duotes                                = '""' { Left };
+Squotes                               = "''" {Left};
+Duotes                                = '""' {Left};
 Ossi quo                              = "'";
 Ossi duo                              = '"';
+Leta                                  = {<};
+Greta                                 = {>};
 
 # Bash commands
 Chadirr                               = {c} {d} {Space};
