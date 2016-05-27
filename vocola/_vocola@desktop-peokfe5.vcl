@@ -61,6 +61,8 @@ Overkill                              = {Home}{Shift+Down} {Shift+Down} {Shift+D
 Del 1..99 next                        = {Ctrl + Right_$1} {Ctrl + Backspace_$1};
 Del 1..99 last                        = {Ctrl + Backspace_$1};
 Sanno                                 = { Ctrl + s };
+Bass                                  = {Backspace};
+Bass 2..99                            = {Backspace_$1};
 
 
 
@@ -75,8 +77,11 @@ Obra                                  = '[';
 Leta                                  = {<};
 Greta                                 = {>};
 Pew                                   = {+};
+Spew                                  = {Space} {+} {Space};
 Nay                                   = {-};
+Snay                                  = {Space} {-} {Space};
 Ek                                    = '=';
+Spec                                  = {Space} '=' {Space};
 Squotes                               = "''" {Left};
 Duotes                                = '""' {Left};
 Oquo                                  = "'";
