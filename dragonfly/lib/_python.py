@@ -33,11 +33,19 @@ def def_function(text):
     Text("def " + format.snake_case(str(text)) + "():").execute()
     Key("left:2").execute()
 
+''' Outputs a class definition with the parameter
+text as the class name.
+'''
+def def_class(text):
+    Text("class " + format.pascal_case(str(text)) + "():").execute()
+    Key("left:2").execute()
+
+
 ''' The MappingRule for this module.'''
 class MainRule( MappingRule ):
 
 	mapping = { 
-        '[use] def pyfunc [<text>]': Function(def_function, extra = {"text"}),
+        '[use] defunc [<text>]': Function(def_function, extra = {"text"}),
         '[use] pydoc': Function(doc_string),
 	}
 	extras = [
