@@ -25,7 +25,7 @@ Might                                 = {Right};
 Might 2..99                           = {Right_$1};
 E line                                = {End};
 
-Dline                                 = {End} {Shift + Home} {Del};
+De line                               = {End} {Shift + Home} {Del};
 Sline                                 = {End} {Shift + Home};
 
 
