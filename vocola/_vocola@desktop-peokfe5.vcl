@@ -66,22 +66,23 @@ Sanno                                 = { Ctrl + s };
 
 
 # General formatting
-
 Indent                                = {Space_4};
 Prain                                 = '()' {Left};
 Okra                                  = '{';
 Krax                                  = '{}' {Left};
 Brax                                  = '[]' {Left};
 Obra                                  = '[';
-Squotes                               = "''" {Left};
-Duotes                                = '""' {Left};
-Ossi quo                              = "'";
-Ossi duo                              = '"';
 Leta                                  = {<};
 Greta                                 = {>};
+Pew                                   = {+};
+Nay                                   = {-};
+Ek                                    = '=';
+Squotes                               = "''" {Left};
+Duotes                                = '""' {Left};
+Oquo                                  = "'";
+Oduo                                  = '"';
 
 # Bash commands
 Chadirr                               = {c} {d} {Space};
 Ellis                                 = {l} {s} { Space };
 Tilde                                 = '~';
-
