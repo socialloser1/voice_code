@@ -18,7 +18,10 @@ from dragonfly import (
     Text
 )
 
-''' Creates an empty doc string'''
+''' Creates an empty doc string
+
+As of right now, this function is not working properly!
+'''
 def doc_string():
     Text("''''''").execute()
     Key("left:3").execute()
