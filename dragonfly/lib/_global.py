@@ -13,13 +13,19 @@ import format
 
 # Functions that execute different kinds of formatting on text
 def snake_case_format( text ):
-	Text( format.snake_case( text ) ).execute()
+	Text( format.snake_case( str( text ) ) ).execute()
 
 def camel_case_format( text ):
-	Text( format.camel_case( text ) ).execute()
+	Text( format.camel_case( str( text ) ) ).execute()
 
 def pascal_case_format( text ):
-	Text( format.pascal_case( text ) ).execute()
+	Text( format.pascal_case( str( text ) ) ).execute()
+
+def concatenated_lower( text ):
+	Text( format.no_space_lower( str( text ) ) ).execute()
+
+def concatenated_upper( text ):
+	Text( format.no_space_upper( str( text ) ) ).execute()
 
 class MainRule( MappingRule ):
 
@@ -27,6 +33,8 @@ class MainRule( MappingRule ):
         "[use] snay cass [<text>]" : Function( snake_case_format, extra = {"text"} ),
         "[use] cam cass [<text>]" : Function( camel_case_format, extra = {"text"} ),
         "[use] pass cass [<text>]": Function( pascal_case_format, extra = {"text"} ),
+        "[use] cocol [<text>]": Function( concatenated_lower, extra = {"text"} ),
+        "[use] cocup [<text>]": Function( concatenated_upper, extra = {"text"} ),
 	}
 	extras = [
                 Dictation( "text" ),
