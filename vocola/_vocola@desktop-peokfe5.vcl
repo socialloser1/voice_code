@@ -11,6 +11,8 @@ Shab                                  = {Shift+Tab};
 
 Dunk                                  = {Enter};
 
+D dunk                                = { Enter_2 };
+T dunk                                = { Enter_3 };
 Mup                                   = {Up};
 
 Dup                                   = {Down};
@@ -22,11 +24,13 @@ Del line                              = {End} {Shift + Home} {Del};
 
 
 Bo line                               = {Home};
-Co line                               = { End } ';';
+Seco line                             = { End } ';';                    # Semicolon at end of line
+Reco line                             = { End } ':';
 Cleft                                 = { Ctrl + Left };
 Cleft 1..99                           = { Ctrl + Left_$1 };
 Crait                                 = { Ctrl + Right };
 Crait 1..99                           = { Ctrl + Right_$1 };
+Fithi                                 = { Ctrl + f };
 
 # Killing and yanking and stuff
 
@@ -38,16 +42,17 @@ Steal                                 = {Ctrl+c};
 
 Crap                                  = {Ctrl+z};
 
-Single kill                           = {Home} {Shift+End} {Ctrl+x};
+S kill                                = {Home} {Shift+End} {Ctrl+x};
 
-Double Kill                           = {Home} {Shift+Down} {Shift+End} {Ctrl+x};
+D Kill                                = {Home} {Shift+Down} {Shift+End} {Ctrl+x};
 
-Triple Kill                           = {Home}{Shift+Down} {Shift+Down} {Shift+End} {Ctrl+x};
+T Kill                                = {Home}{Shift+Down} {Shift+Down} {Shift+End} {Ctrl+x};
 
 Overkill                              = {Home}{Shift+Down} {Shift+Down} {Shift+Down} {Shift+End} {Ctrl+x};
 
 Del 1..99 next                        = {Ctrl + Right_$1} {Ctrl + Backspace_$1};
 Del 1..99 last                        = {Ctrl + Backspace_$1};
+Sanno                                 = { Ctrl + s };
 
 
 
@@ -56,10 +61,10 @@ Del 1..99 last                        = {Ctrl + Backspace_$1};
 
 Indent                                = {Space_4};
 Prain                                 = '(  )' {Left_2};
-Krax                                  = '{  }' {Left_2};
-Brax                                  = '[  ]' {Left_2};
+Krax                                  = '{}' {Left};
+Brax                                  = '[]' {Left};
 Squotes                               = "'  '" { Left_2 };
-Duotes                                = '"  "' { Left_2 };
+Duotes                                = '"  "' { Left_2 }; 
 
 # Bash commands
 Chadirr                               = {c} {d} {Space};
