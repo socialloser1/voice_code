@@ -1,10 +1,10 @@
 # Interfaces the global commands ( Right now, only formatting ) with DNS via dragonfly
 
-''' This module interfaces the global commands ( right now, only formatting ) With DNS via dragonfly.
+""" This module interfaces the global commands ( right now, only formatting ) With DNS via dragonfly.
 
 Author: Simon Larsen
 Version: 2016-05-26
-'''
+"""
 
 from dragonfly import ( Key, Function, Grammar,
                         Dictation, MappingRule, Text )

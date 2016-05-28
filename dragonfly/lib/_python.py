@@ -12,6 +12,7 @@ from dragonfly import (
     Function,
     MappingRule,
     Integer,
+    IntegerRef,
     Grammar,
     Dictation,
     Key,
@@ -40,30 +41,28 @@ def def_class(text):
     Text("class " + format.pascal_case(str(text)) + "():").execute()
     Key("left:2").execute()
 
-""" Outputs 'text' = 'n', where multiple words in 'text' are snake-cased.
-"""
-def assignment(text, n):
-    Text(format.snake_case(str(text))  + " = " + str(n)).execute()
+""" Outputs 'text' = 'i', where multiple words in 'text' are snake-cased."""
+def assignment(text, i):
+    Text(format.snake_case(str(text))  + " = " + str(i)).execute()
 
 """ The MappingRule for this module."""
 class MainRule( MappingRule ):
 
 	mapping = { 
-        '[use] defunc [<text>]': Function(def_function, extra = {"text"}),
+        '[use] defunc <text>': Function(def_function, extra = {"text"}),
         '[use] pydoc': Function(doc_string),
-        '[use] class [<text>]': Function(def_class, extra = {"text"}),
-        '[use] assign [<n>] to [<text>]': Function(assignment, extra={"text","n"}),
+        '[use] class <text>': Function(def_class, extra = {"text"}),
+        '[use] assign [<i>] to <text>': Function(assignment, extra={"text", "i"}),
+        '[use] for range [<i>]': Text("for i in range(0, %(i)d):"),
 	}
 	extras = [
                 Dictation("text"),
-                Integer("n", 0, 10000),
-
+                Integer("i", 0, 10000),
 	]
-	defaults = {"text": "",
-                "n": 0,
+	defaults = {
+                "i": 0,
     }
 
 grammar = Grammar('python')
 grammar.add_rule(MainRule())
 grammar.load()
-
