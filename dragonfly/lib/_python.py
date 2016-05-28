@@ -45,6 +45,14 @@ def def_class(text):
 def assignment(text, i):
     Text(format.snake_case(str(text))  + " = " + str(i)).execute()
 
+""" Outputs a for-each loop with the input parameter as the collection
+to iterate over. If the parameter consists of several words, it will be snake-cased 
+"""
+def for_each(text):
+    coll = format.snake_case(str(text))
+    Text("for current in %s:"%(coll)).execute()
+    Key("enter").execute()
+
 """ The MappingRule for this module."""
 class MainRule( MappingRule ):
 
@@ -54,6 +62,7 @@ class MainRule( MappingRule ):
         '[use] class <text>': Function(def_class, extra = {"text"}),
         '[use] assign [<i>] to <text>': Function(assignment, extra={"text", "i"}),
         '[use] for range [<i>]': Text("for i in range(0, %(i)d):"),
+        '[use] for each <text>': Function(for_each, extra = {"text"}),
 	}
 	extras = [
                 Dictation("text"),
