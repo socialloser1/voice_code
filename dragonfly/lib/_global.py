@@ -27,6 +27,9 @@ def concatenated_lower( text ):
 def concatenated_upper( text ):
 	Text( format.no_space_upper( str( text ) ) ).execute()
 
+def lowercase( text ):
+	Text(format.lowercase_letters(str(text))).execute()
+
 class MainRule( MappingRule ):
 
 	mapping = { 
@@ -35,6 +38,7 @@ class MainRule( MappingRule ):
         "[use] pass cass <text>": Function( pascal_case_format, extra = {"text"} ),
         "[use] cocol <text>": Function( concatenated_lower, extra = {"text"} ),
         "[use] cocup <text>": Function( concatenated_upper, extra = {"text"} ),
+        "[use] low cass <text>": Function( lowercase, extra = {"text"} ),
 	}
 	extras = [
                 Dictation( "text" ),

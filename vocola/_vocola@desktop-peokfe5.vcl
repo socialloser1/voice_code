@@ -11,6 +11,7 @@ Shab                                  = {Shift+Tab};
 
 Dunk                                  = {Enter};
 
+E dunk                                = {End} {Enter};
 Dunk 2..99                            = {Enter_$1};
 Mup                                   = {Up};
 
@@ -29,8 +30,10 @@ De line                               = {End} {Shift + Home} {Del};
 
 
 Bo line                               = {Home};
-Seco line                             = {End} ';';                    # Semicolon at end of line
+Seco line                             = {End} ';';
+Seco du                               = {End} ';' {Enter};
 Reco line                             = {End} ':';
+Reco du                               = {End} ':' {Enter};
 Cleft                                 = {Ctrl + Left};
 Cleft 1..99                           = {Ctrl + Left_$1};
 Crait                                 = {Ctrl + Right};
@@ -73,16 +76,22 @@ Okra                                  = '{';
 Krax                                  = '{}' {Left};
 Brax                                  = '[]' {Left};
 Obra                                  = '[';
+Squotes                               = "''" {Left};
+Duotes                                = '""' {Left};
+
+# Math symbols
 Leta                                  = {<};
 Greta                                 = {>};
 Pew                                   = {+};
+Pec                                   = '+=';
 Spew                                  = {Space} {+} {Space};
+Spec                                  = {Space} '+=' {Space};
 Nay                                   = {-};
+Nayc                                  = '=-';
 Snay                                  = {Space} {-} {Space};
+Snayc                                 = {Space} '=-' {Space};
 Ek                                    = '=';
-Spec                                  = {Space} '=' {Space};
-Squotes                               = "''" {Left};
-Duotes                                = '""' {Left};
+Sec                                   = {Space} '=' {Space};
 
 # Bash commands
 Chadirr                               = {c} {d} {Space};

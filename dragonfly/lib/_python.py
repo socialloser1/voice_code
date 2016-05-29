@@ -63,6 +63,8 @@ class MainRule( MappingRule ):
         '[use] assign [<i>] to <text>': Function(assignment, extra={"text", "i"}),
         '[use] for range [<i>]': Text("for i in range(0, %(i)d):"),
         '[use] for each <text>': Function(for_each, extra = {"text"}),
+
+        # Keywords
         'for': Text("for"),
         'else': Text("else:") + Key("enter"),
         'if': Text("if :") + Key("left"),

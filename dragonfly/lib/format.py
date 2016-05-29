@@ -64,3 +64,42 @@ def no_space_upper( text ):
 	for word in str( text ).upper().split():
 		new_text += word
 	return new_text
+
+# Lowercase letter mapping
+lowercase_map = {
+    "alpha": "a",
+    "bravo": "b",
+    "charlie": "c",
+    "delta": "d",
+    "echo": "e",
+    "foxtrot": "f",
+    "golf": "g",
+    "hotel": "h",
+    "india": "i",
+    "juliet": "j",
+    "kilo": "k",
+    "lima": "l",
+    "mike": "m",
+    "november": "n",
+    "oscar": "o",
+    "papa": "p",
+    "quebec": "q",
+    "romeo": "r",
+    "sierra": "s",
+    "tango": "t",
+    "uniform": "u",
+    "victor": "v",
+    "whiskey": "w",
+    "x-ray": "x",
+    "yankee": "y",
+    "zulu": "z",
+}
+
+""" Converts keywords to lowercase letters """
+def lowercase_letters( text ):
+    text = text.lower()
+    new_text = ""
+    for current in text.split():
+        if current in lowercase_map.keys():
+            new_text += lowercase_map[current]
+    return new_text
