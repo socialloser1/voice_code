@@ -60,7 +60,7 @@ class MainRule( MappingRule ):
         '[use] defunc <text>': Function(def_function, extra = {"text"}),
         '[use] pydoc': Function(doc_string),
         '[use] class <text>': Function(def_class, extra = {"text"}),
-        '[use] assign [<i>] to <text>': Function(assignment, extra={"text", "i"}),
+        '[use] assign <text> int [<i>]': Function(assignment, extra={"text", "i"}),
         '[use] for range [<i>]': Text("for i in range(0, %(i)d):"),
         '[use] for each <text>': Function(for_each, extra = {"text"}),
 
