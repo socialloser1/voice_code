@@ -7,7 +7,7 @@ Version: 2016-05-26
 """
 
 from dragonfly import ( Key, Function, Grammar,
-                        Dictation, MappingRule, Text, Mimic )
+                        Dictation, MappingRule, Text )
 
 import format
 
@@ -30,19 +30,15 @@ def concatenated_upper( text ):
 class MainRule( MappingRule ):
 
 	mapping = { 
-        "[use] snay cass [<text>]": Function( snake_case_format, extra = {"text"} ),
-        "[use] cam cass [<text>]": Function( camel_case_format, extra = {"text"} ),
-        "[use] pass cass [<text>]": Function( pascal_case_format, extra = {"text"} ),
-        "[use] cocol [<text>]": Function( concatenated_lower, extra = {"text"} ),
-        "[use] cocup [<text>]": Function( concatenated_upper, extra = {"text"} ),
-        "Disable caps": Mimic("\\no-caps-on"),
-        "Enable caps": Mimic("\\no-caps-off"),
+        "[use] snay cass <text>": Function( snake_case_format, extra = {"text"} ),
+        "[use] cam cass <text>": Function( camel_case_format, extra = {"text"} ),
+        "[use] pass cass <text>": Function( pascal_case_format, extra = {"text"} ),
+        "[use] cocol <text>": Function( concatenated_lower, extra = {"text"} ),
+        "[use] cocup <text>": Function( concatenated_upper, extra = {"text"} ),
 	}
 	extras = [
                 Dictation( "text" ),
 	]
-	defaults = {"text": "",
-    }
 
 grammar = Grammar('global')
 grammar.add_rule(MainRule())
