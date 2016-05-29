@@ -103,3 +103,7 @@ def lowercase_letters( text ):
         if current in lowercase_map.keys():
             new_text += lowercase_map[current]
     return new_text
+
+""" Converts keywords to uppercase letters """
+def uppercase_letters( text ):
+    return lowercase_letters(text).upper()
