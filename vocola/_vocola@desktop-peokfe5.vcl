@@ -11,8 +11,7 @@ Shab                                  = {Shift+Tab};
 
 Dunk                                  = {Enter};
 
-D dunk                                = { Enter_2 };
-T dunk                                = { Enter_3 };
+Dunk 2..99                            = {Enter_$1};
 Mup                                   = {Up};
 
 Mup 2..99                             = {Up_$1};
@@ -84,8 +83,6 @@ Ek                                    = '=';
 Spec                                  = {Space} '=' {Space};
 Squotes                               = "''" {Left};
 Duotes                                = '""' {Left};
-Oquo                                  = "'";
-Oduo                                  = '"';
 
 # Bash commands
 Chadirr                               = {c} {d} {Space};
