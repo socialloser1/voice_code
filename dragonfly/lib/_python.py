@@ -42,7 +42,7 @@ def def_class(text):
     Key("left:2").execute()
 
 """ Outputs 'text' = 'i', where multiple words in 'text' are snake-cased."""
-def assignment(text, i):
+def assign_int(text, i):
     Text(format.snake_case(str(text))  + " = " + str(i)).execute()
 
 """ Outputs a for-each loop with the input parameter as the collection
@@ -60,7 +60,7 @@ class MainRule( MappingRule ):
         '[use] defunc <text>': Function(def_function, extra = {"text"}),
         '[use] pydoc': Function(doc_string),
         '[use] class <text>': Function(def_class, extra = {"text"}),
-        '[use] assign <text> int [<i>]': Function(assignment, extra={"text", "i"}),
+        '[use] assign <text> integer [<i>]': Function(assign_int, extra={"text", "i"}),
         '[use] for range [<i>]': Text("for i in range(0, %(i)d):"),
         '[use] for each <text>': Function(for_each, extra = {"text"}),
 
