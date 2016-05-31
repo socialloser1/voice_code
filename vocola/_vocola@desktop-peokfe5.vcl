@@ -60,8 +60,10 @@ T Kill                                = {Home}{Shift+Down} {Shift+Down} {Shift+E
 
 Overkill                              = {Home}{Shift+Down} {Shift+Down} {Shift+Down} {Shift+End} {Ctrl+x};
 
-Del 1..99 next                        = {Ctrl + Right_$1} {Ctrl + Backspace_$1};
-Del 1..99 last                        = {Ctrl + Backspace_$1};
+Derr                                  = {Ctrl + Right} {Ctrl + Backspace};
+Derr 2..99                            = {Ctrl + Right_$1} {Ctrl + Backspace_$1};
+Deft                                  = {Ctrl + Backspace};
+Deft 2..99                            = {Ctrl + Backspace_$1};
 Sanno                                 = { Ctrl + s };
 Bass                                  = {Backspace};
 Bass 2..99                            = {Backspace_$1};
