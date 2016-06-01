@@ -7,9 +7,9 @@ Version: 2016-05-26
 """
 
 from dragonfly import ( Key, Function, Grammar,
-                        Dictation, MappingRule, Text )
+                        Dictation, MappingRule, Text, Choice )
 
-import format
+from lib import (format, python, c_lang)
 
 # Functions that execute different kinds of formatting on text
 def snake_case_format(text):
@@ -33,7 +33,25 @@ def lowercase( text ):
 def uppercase( text ):
 	Text(format.uppercase_letters(str(text))).execute()
 
+def enable_grammar(choice):
+	choice.enable()
+
+def disable_grammar(choice):
+    choice.disable()
+
 class MainRule( MappingRule ):
+	""" This rule always loads when NatLinks starts, and is always enabled.
+	Therefore, the mappings below are always available.
+
+	The grammars in the grammar_modules dictionary can be enable/disabled by saying:
+	'enable / disable grammar <name of module>'
+
+	NOTE: There is as of yet NO compatability check between grammar modules, so beware
+	when enabling / disabling them!
+	"""
+	grammar_modules = {
+	    "python": python,
+	}
 
 	mapping = { 
         "[use] snay cass <text>": Function( snake_case_format, extra = {"text"} ),
@@ -43,9 +61,12 @@ class MainRule( MappingRule ):
         "[use] cocup <text>": Function( concatenated_upper, extra = {"text"} ),
         "[use] low cass <text>": Function( lowercase, extra = {"text"} ),
         "[use] hi cass <text>": Function( uppercase, extra = {"text"} ),
+        "[use] enable grammar <choice>": Function(enable_grammar, extra = {"choice"}),
+        "[use] disable grammar <choice>" : Function(disable_grammar, extra = {"choice"}),
 	}
 	extras = [
-                Dictation( "text" ),
+                Dictation("text"),
+                Choice("choice", grammar_modules),
 	]
 
 grammar = Grammar('global')

@@ -24,7 +24,7 @@ from dragonfly import (
 As of right now, this function is not working properly!
 """
 def doc_string():
-    Text('""""""').execute()
+    Text('" " " " " " ').execute()
     Key("left:3").execute()
 
 """ Function that prints out a Python function definition,
@@ -63,6 +63,7 @@ class MainRule( MappingRule ):
         '[use] assign <text> integer [<i>]': Function(assign_int, extra={"text", "i"}),
         '[use] for range [<i>]': Text("for i in range(0, %(i)d):"),
         '[use] for each <text>': Function(for_each, extra = {"text"}),
+	    'doc string': Function(doc_string),
 
         # Keywords
         'for': Text("for"),
@@ -70,6 +71,7 @@ class MainRule( MappingRule ):
         'if': Text("if :") + Key("left"),
         'elif': Text("elif :") + Key("left"),
         'import': Text("import "),
+        'test if': Text("if () {") + Key("enter:2") + Text("}"),
 	}
 	extras = [
                 Dictation("text"),
@@ -79,6 +81,18 @@ class MainRule( MappingRule ):
                 "i": 0,
     }
 
+# Load and disable grammar
 grammar = Grammar('python')
 grammar.add_rule(MainRule())
 grammar.load()
+grammar.disable()
+
+def enable():
+    global grammar
+    if grammar.enabled == False:
+        grammar.enable()
+
+def disable():
+    global grammar
+    if grammar.enabled:
+        grammar.disable()
