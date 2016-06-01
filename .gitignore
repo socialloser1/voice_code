@@ -60,8 +60,11 @@ target/
 #Ipython Notebook
 .ipynb_checkpoints
 
-# Compiled files
+# Compiled files and Vim swap files
 .pyc
+.swp
+
+
 
 # For testing ideas
 main.py
