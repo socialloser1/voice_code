@@ -28,7 +28,8 @@ def insertion(insert):
         Key(insert).execute()
         command_mode = False
     else:
-        print ("Not in command mode!")
+        print ("Not in command mode!\n"
+        + "If you opened a new Vim session, please issue the 'command mode' voice command.")
 
 def enable_command_mode():
     global command_mode
