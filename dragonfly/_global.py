@@ -9,7 +9,7 @@ Version: 2016-05-26
 from dragonfly import ( Key, Function, Grammar,
                         Dictation, MappingRule, Text, Choice )
 
-from lib import (format, python, c_lang)
+from lib import (format, python, c_lang, vim)
 
 # Functions that execute different kinds of formatting on text
 def snake_case_format(text):
@@ -51,12 +51,13 @@ class MainRule( MappingRule ):
 	"""
 	grammar_modules = {
 	    "python": python,
+	    "vim": vim,
 	}
 
 	mapping = { 
-        "[use] snay cass <text>": Function( snake_case_format, extra = {"text"} ),
-        "[use] cam cass <text>": Function( camel_case_format, extra = {"text"} ),
-        "[use] pass cass <text>": Function( pascal_case_format, extra = {"text"} ),
+        "[use] snake <text>": Function( snake_case_format, extra = {"text"} ),
+        "[use] camel <text>": Function( camel_case_format, extra = {"text"} ),
+        "[use] pascal <text>": Function( pascal_case_format, extra = {"text"} ),
         "[use] cocol <text>": Function( concatenated_lower, extra = {"text"} ),
         "[use] cocup <text>": Function( concatenated_upper, extra = {"text"} ),
         "[use] low cass <text>": Function( lowercase, extra = {"text"} ),
