@@ -60,8 +60,8 @@ class MainRule( MappingRule ):
         "[use] pascal <text>": Function( pascal_case_format, extra = {"text"} ),
         "[use] cocol <text>": Function( concatenated_lower, extra = {"text"} ),
         "[use] cocup <text>": Function( concatenated_upper, extra = {"text"} ),
-        "[use] low cass <text>": Function( lowercase, extra = {"text"} ),
-        "[use] hi cass <text>": Function( uppercase, extra = {"text"} ),
+        "[use] spell low <text>": Function( lowercase, extra = {"text"} ),
+        "[use] spell high <text>": Function( uppercase, extra = {"text"} ),
         "[use] enable grammar <choice>": Function(enable_grammar, extra = {"choice"}),
         "[use] disable grammar <choice>" : Function(disable_grammar, extra = {"choice"}),
 	}

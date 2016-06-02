@@ -83,23 +83,3 @@ returns them as uppercase.
 def uppercase_letters( text ):
     return lowercase_letters(text).upper()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
