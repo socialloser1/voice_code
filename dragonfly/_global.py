@@ -27,10 +27,10 @@ def concatenated_lower( text ):
 def concatenated_upper( text ):
 	Text( format.no_space_upper( str( text ) ) ).execute()
 
-def lowercase( text ):
+def spell_lowercase( text ):
 	Text(format.lowercase_letters(str(text))).execute()
 
-def uppercase( text ):
+def spell_uppercase( text ):
 	Text(format.uppercase_letters(str(text))).execute()
 
 def enable_grammar(choice):
@@ -38,6 +38,7 @@ def enable_grammar(choice):
 
 def disable_grammar(choice):
     choice.disable()
+    
 
 class MainRule( MappingRule ):
 	""" This rule always loads when NatLinks starts, and is always enabled.
@@ -60,10 +61,12 @@ class MainRule( MappingRule ):
         "[use] pascal <text>": Function( pascal_case_format, extra = {"text"} ),
         "[use] cocol <text>": Function( concatenated_lower, extra = {"text"} ),
         "[use] cocup <text>": Function( concatenated_upper, extra = {"text"} ),
-        "[use] spell low <text>": Function( lowercase, extra = {"text"} ),
-        "[use] spell high <text>": Function( uppercase, extra = {"text"} ),
+        "[use] spell low <text>": Function( spell_lowercase, extra = {"text"} ),
+        "[use] spell high <text>": Function( spell_uppercase, extra = {"text"} ),
         "[use] enable grammar <choice>": Function(enable_grammar, extra = {"choice"}),
         "[use] disable grammar <choice>" : Function(disable_grammar, extra = {"choice"}),
+        "[use] lowercase <text>": Text("%(text)s".lower()),
+        "[use] uppercase <text>": Text("%(text)s".upper()),
 	}
 	extras = [
                 Dictation("text"),
