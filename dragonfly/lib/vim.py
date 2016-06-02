@@ -19,8 +19,22 @@ from dragonfly import (
     Text
 )
 
+command_mode = True
+
+# Remember to set command_mode = False when insert/visual/select etc!
 def insertion(insert):
-    Key(str(insert)).execute()
+    global command_mode
+    if command_mode:
+        Key(insert).execute()
+        command_mode = False
+    else:
+        print ("Not in command mode!")
+
+def enable_command_mode():
+    global command_mode
+    if not command_mode:
+        Key("escape").execute()
+        command_mode = True
 
 class MainRule(MappingRule):
     # Different points of insertion
@@ -35,6 +49,7 @@ class MainRule(MappingRule):
 
     mapping = {
     "[use] insert [<insert>]": Function(insertion, extra = {"insert"}),
+    "[enable] command mode":  Function(enable_command_mode),
     }
     extras = [
         Dictation("text"),
@@ -51,6 +66,7 @@ grammar.add_rule(MainRule())
 grammar.load()
 grammar.disable()
 
+# Functions that enable and disable this grammar
 def enable():
     global grammar
     if not grammar.enabled:
