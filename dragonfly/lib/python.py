@@ -57,21 +57,21 @@ def for_each(text):
 class MainRule( MappingRule ):
 
 	mapping = { 
-        '[use] defunc <text>': Function(def_function, extra = {"text"}),
-        '[use] pydoc': Function(doc_string),
-        '[use] class <text>': Function(def_class, extra = {"text"}),
-        '[use] assign <text> integer [<i>]': Function(assign_int, extra={"text", "i"}),
-        '[use] for range [<i>]': Text("for i in range(0, %(i)d):"),
-        '[use] for each <text>': Function(for_each, extra = {"text"}),
-	    'doc string': Function(doc_string),
+        "[use] defunc <text>": Function(def_function, extra = {"text"}),
+        "[use] pydoc": Function(doc_string),
+        "[use] class <text>": Function(def_class, extra = {"text"}),
+        "[use] assign <text> integer [<i>]": Function(assign_int, extra={"text", "i"}),
+        "[use] for range [<i>]": Text("for i in range(0, %(i)d):"),
+        "[use] for each <text>": Function(for_each, extra = {"text"}),
+	    "doc string": Function(doc_string),
 
         # Keywords
-        'for': Text("for"),
-        'else': Text("else:") + Key("enter"),
-        'if': Text("if :") + Key("left"),
-        'elif': Text("elif :") + Key("left"),
-        'import': Text("import "),
-        'test if': Text("if () {") + Key("enter:2") + Text("}"),
+        "for": Text("for"),
+        "else": Text("else:") + Key("enter"),
+        "if": Text("if :") + Key("left"),
+        "elif": Text("elif :") + Key("left"),
+        "import": Text("import "),
+        "test if": Text("if () {") + Key("enter:2") + Text("}"),
 	}
 	extras = [
                 Dictation("text"),
