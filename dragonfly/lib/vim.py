@@ -29,7 +29,8 @@ def insertion(insert):
         command_mode = False
     else:
         print ("Not in command mode!\n"
-        + "If you opened a new Vim session, please issue the 'command mode' voice command.")
+        + "If you opened a new Vim session or switched mode with keyboard,\n"
+        + "please issue the 'command mode' voice command.")
 
 def enable_command_mode():
     global command_mode
@@ -37,8 +38,15 @@ def enable_command_mode():
     command_mode = True
 
 def set_command(command_choice):
+    execute_command("set " + str(command_choice))
+
+def execute_command(text):
     enable_command_mode()
-    Text(":set " + command_choice).execute()
+    Text(":" + text).execute()
+    Key("enter").execute()
+
+def go_to_line(i):
+    execute_command(str(i))
 
 class MainRule(MappingRule):
     # Different points of insertion
@@ -54,10 +62,12 @@ class MainRule(MappingRule):
     mapping = {
     "[use] insert [<insert>]": Function(insertion, extra = {"insert"}),
     "[enable] command mode":  Function(enable_command_mode),
+    "[go to] line <i>": Function(go_to_line, extra = {"i"}),
     }
     extras = [
         Dictation("text"),
 	Choice("insert", insert_points),
+        Integer("i", 1, 10000),
     ]
     defaults = {
     "insert": "i",
