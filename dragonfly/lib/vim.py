@@ -33,9 +33,12 @@ def insertion(insert):
 
 def enable_command_mode():
     global command_mode
-    if not command_mode:
-        Key("escape").execute()
-        command_mode = True
+    Key("escape").execute()
+    command_mode = True
+
+def set_command(command_choice):
+    enable_command_mode()
+    Text(":set " + command_choice).execute()
 
 class MainRule(MappingRule):
     # Different points of insertion
