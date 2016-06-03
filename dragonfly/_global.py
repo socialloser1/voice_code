@@ -1,4 +1,4 @@
-# Interfaces the global commands ( Right now, only formatting ) with DNS via dragonfly
+#Interfaces the global commands ( Right now, only formatting ) with DNS via dragonfly
 
 """ This module interfaces the global commands ( right now, only formatting ) With DNS via dragonfly.
 
@@ -9,7 +9,7 @@ Version: 2016-05-26
 from dragonfly import ( Key, Function, Grammar,
                         Dictation, MappingRule, Text, Choice )
 
-from lib import (format, python, c_lang, vim)
+from lib import (general_programming, format, python, c_lang, vim)
 
 # Functions that execute different kinds of formatting on text
 def snake_case_format(text):
@@ -39,6 +39,11 @@ def enable_grammar(choice):
 def disable_grammar(choice):
     choice.disable()
     
+def lowercase(text):
+    Text(text.lower()).execute()
+
+def uppercase(text):
+    Text(text.upper()).execute()
 
 class MainRule( MappingRule ):
 	""" This rule always loads when NatLinks starts, and is always enabled.
@@ -53,6 +58,7 @@ class MainRule( MappingRule ):
 	grammar_modules = {
 	    "python": python,
 	    "vim": vim,
+            "general programming": general_programming,
 	}
 
 	mapping = { 
@@ -65,8 +71,8 @@ class MainRule( MappingRule ):
         "[use] spell high <text>": Function( spell_uppercase, extra = {"text"} ),
         "[use] enable grammar <choice>": Function(enable_grammar, extra = {"choice"}),
         "[use] disable grammar <choice>" : Function(disable_grammar, extra = {"choice"}),
-        "[use] lowercase <text>": Text("%(text)s".lower()),
-        "[use] uppercase <text>": Text("%(text)s".upper()),
+        "[use] lowercase <text>": Function(lowercase, extra = {"text"}),
+        "[use] uppercase <text>": Function(uppercase, extra = {"text"}),
 	}
 	extras = [
                 Dictation("text"),

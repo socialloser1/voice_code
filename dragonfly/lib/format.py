@@ -75,8 +75,6 @@ def lowercase_letters( text ):
         new_text += current[0]
     return new_text.lower()
 
-
-
 """ Concatenates the first letter of every word in the parameter and
 returns them as uppercase.
 """
