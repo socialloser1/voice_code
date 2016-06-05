@@ -9,7 +9,7 @@ Version: 2016-05-26
 from dragonfly import ( Key, Function, Grammar,
                         Dictation, MappingRule, Text, Choice )
 
-from lib import (general_programming, format, python, c_lang, vim)
+from lib import (total_war, general_programming, format, python, c_lang, vim)
 
 # Functions that execute different kinds of formatting on text
 def snake_case_format(text):
@@ -40,10 +40,10 @@ def disable_grammar(choice):
     choice.disable()
     
 def lowercase(text):
-    Text(text.lower()).execute()
+    Text(str(text).lower()).execute()
 
 def uppercase(text):
-    Text(text.upper()).execute()
+    Text(str(text.upper())).execute()
 
 class MainRule( MappingRule ):
 	""" This rule always loads when NatLinks starts, and is always enabled.
@@ -59,6 +59,7 @@ class MainRule( MappingRule ):
 	    "python": python,
 	    "vim": vim,
             "general programming": general_programming,
+            "total war": total_war,
 	}
 
 	mapping = { 

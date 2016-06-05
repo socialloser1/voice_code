@@ -63,7 +63,7 @@ class MainRule( MappingRule ):
         "[use] assign <text> integer [<i>]": Function(assign_int, extra={"text", "i"}),
         "[use] for range [<i>]": Text("for i in range(0, %(i)d):"),
         "[use] for each <text>": Function(for_each, extra = {"text"}),
-	    "doc string": Function(doc_string),
+	"doc string": Function(doc_string),
 
         # Keywords
         "for": Text("for"),

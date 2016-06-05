@@ -15,16 +15,29 @@ from dragonfly import (
     Grammar,
     Dictation,
     Key,
-    Text 
+    Text,
+    Choice
 )
 
+def select_all(unit_type):
+    Key("c-%s"%(unit_type)).execute()
+    
 class MainRule(MappingRule):
+    unit_types = {
+    "cavalry": "c",
+    "infantry": "i",
+    "missile": "m",
+    }
     mapping = {
     "group up": Key("g"),
     "[select] group <i>": Key("i"),
+    "lock [group]": Key("c-g"),
+    "[Select] all <unit_type>": Function(select_all, extra = {"unit_type"}),
+    "Select all simple <unit_type>": Key("c-%(unit_type)s"),
     }
     extras = [
-        Integer("i"),
+        Integer("i", 1, 9),
+        Choice("unit_type", unit_types),
     ]
 
 # Load and is able grammar
