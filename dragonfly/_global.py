@@ -60,6 +60,7 @@ class MainRule( MappingRule ):
 	    "vim": vim,
             "general programming": general_programming,
             "total war": total_war,
+            "see": c_lang,
 	}
 
 	mapping = { 
