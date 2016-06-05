@@ -14,7 +14,8 @@ from dragonfly import (
     Dictation,
     Text,
     Key,
-    Grammar
+    Grammar,
+    Choice
 )
 
 def assignment(text):
@@ -27,6 +28,8 @@ def function_call(text):
     Text(call).execute()
     # Place cursor inside parens
     Key("left").execute()
+
+
 
 class OperationsRule(MappingRule):
     """ General operations, such as assignments """
@@ -49,10 +52,38 @@ class KeywordsRule(MappingRule):
         "float": Text("float"),
     }
 
+def enable_rule(rule):
+    global grammar
+    if rule not in grammar.rules:
+        grammar.unload()
+        grammar.add_rule(rule)
+        grammar.load()
+
+def disable_rule(rule):
+    global grammar
+    if rule in grammar.rules:
+        grammar.unload()
+        grammar.remove_rule(rule)
+        grammar.load()
+
+class MainRule(MappingRule):
+    """ Only for enabling and disabling other rules in this grammar """
+    rules = {
+        "keywords": KeywordsRule(),
+        "operations": OperationsRule(),
+    }
+
+    mapping = {
+        "general programming enable <rule>": Function(enable_rule, extra = {"rule"}),
+        "general programming disable <rule>": Function(disable_rule, extra = {"rule"})
+    }
+    extras = [
+        Choice("rule", rules),        
+    ]
+
 # Load and is able grammar
 grammar = Grammar("programming")
-grammar.add_rule(KeywordsRule())
-grammar.add_rule(OperationsRule())
+grammar.add_rule(MainRule())
 grammar.load()
 grammar.disable()
 
