@@ -43,7 +43,7 @@ def lowercase(text):
     Text(str(text).lower()).execute()
 
 def uppercase(text):
-    Text(str(text.upper())).execute()
+    Text(str(text).upper()).execute()
 
 class MainRule( MappingRule ):
 	""" This rule always loads when NatLinks starts, and is always enabled.
