@@ -22,15 +22,16 @@ from dragonfly import (
 command_mode = True
 
 # Remember to set command_mode = False when insert/visual/select etc!
-def insertion(insert):
+def insertion(insert, line = -1):
     global command_mode
-    if command_mode:
-        Key(insert).execute()
-        command_mode = False
-    else:
-        print ("Not in command mode!\n"
-        + "If you opened a new Vim session or switched mode with keyboard,\n"
-        + "please issue the 'command mode' voice command.")
+    if not command_mode:
+        enable_commande_mode()
+
+    if 0 < line:
+        go_to_line(line)
+
+    Key(insert).execute()
+    command_mode = False
 
 def enable_command_mode():
     global command_mode
@@ -38,39 +39,53 @@ def enable_command_mode():
     command_mode = True
 
 def set_command(command_choice):
-    execute_command("set " + str(command_choice))
+    execute_command("set " + command_choice)
 
 def execute_command(text):
     enable_command_mode()
-    Text(":" + text).execute()
+    Text(":%s"%(text)).execute()
     Key("enter").execute()
 
-def go_to_line(i):
-    execute_command(str(i))
+def go_to_line(line):
+    execute_command(str(line))
 
 class MainRule(MappingRule):
     # Different points of insertion
     insert_points = {
-    "before": "i",
-    "at home": "I",
-    "after": "a",
-    "at end": "A",
-    "above": "O",
-    "below": "o",
+        "before": "i",
+        "at home": "I",
+        "after": "a",
+        "at end": "A",
+        "above": "O",
+        "below": "o",
+    }
+
+    commands = {
+        "write": "w",
+        "quit": "q",
+        "write and quit": "wq",
     }
 
     mapping = {
-    "[use] insert [<insert>]": Function(insertion, extra = {"insert"}),
-    "[enable] command mode":  Function(enable_command_mode),
-    "[go to] line <i>": Function(go_to_line, extra = {"i"}),
+        "[use] insert [<insert>]": Function(insertion, extra = {"insert"}),
+        "[use] insert [<insert>] line <line>": Function(insertion, extra={"insert", "line"}),
+        "[enable] command mode":  Function(enable_command_mode),
+        "[go to] line <line>": Function(go_to_line, extra = {"line"}),
+        "[use] undo": Function(enable_command_mode) + Key("u"),
+        "[use] redo": Function(enable_command_mode) + Key("c-R"),
+        "[use] write to file": Function(execute_command, text = "w"),
+        "[use] quit": Function(execute_command, text = "q"),
+        "command <command>": Function(execute_command, extras = {"command"}),
+        "force command <command>": Function(execute_command, text = "%(command)s!"),
     }
     extras = [
         Dictation("text"),
 	Choice("insert", insert_points),
-        Integer("i", 1, 10000),
+        Choice("command", commands),
+        Integer("line", 1, 10000),
     ]
     defaults = {
-    "insert": "i",
+        "insert": "line",
     }
 
 
