@@ -28,8 +28,22 @@ def equals_variable(text):
 """ MappingRule for keywords """
 class KeywordsRule(MappingRule):
     common_packages = {
-        "standard i oh": "stdio.h",
-        "standard bool": "stdbool.h",
+        "standard i oh": "stdio",
+        "standard bool": "stdbool",
+        "assert": "assert",
+        "see type": "ctype",
+        "error": "errno",
+        "float": "float",
+        "limits": "limits",
+        "locale": "locale",
+        "math": "math",
+        "set jump": "setjmp",
+        "signal": "signal",
+        "standard argument": "stdarg",
+        "standard definition": "stddef",
+        "standard library": "stdlib",
+        "string": "string",
+        "time": "time",
     }
 
     boolean_ints = {
@@ -43,13 +57,13 @@ class KeywordsRule(MappingRule):
         + Key("up, end, left:3"),
         "else": Text("else {}") + Key("left, enter, up, end, enter"),
         "while": Text("while () {") + Key("enter, rbrace, up, end, left:3"),
-        "for": Text("for ()  {") + Key("enter, rbrace, up, end, left:3"),
+        "for": Text("for () {") + Key("enter, rbrace, up, end, left:3"),
         "for range <i> increment": Text("for (int i = 0, i < %(i)s, i++) {}")
         + Key("left, enter, up, end, enter"),
         "for range <i> decrement": Text("for (int i = %(i)s, 0 <= i, i--) {}")
         + Key("left, enter, up, end, enter"),
         "include": Text("#include <>") + Key("left"),
-        "include <package>": Text("#include <%(package)s>"),
+        "include <package>": Text("#include <%(package)s>.h"),
         "define": Text("#define "),
         "print": Text("printf();") + Key("left:2"),
         "print string": Text('printf("\\n");') + Key("left:5"),
