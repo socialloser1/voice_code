@@ -24,12 +24,24 @@ from dragonfly import (
 
 """ MappingRule for keywords """
 class KeywordsRule(MappingRule):
+    common_packages = {
+        "standard i oh": "stdio.h",
+        "standard bool": "stdbool.h",
+    }
+
     mapping = {
         "if": Text("if () {") + Key("enter:2") + Text("}") + Key("up:2, end, left:3"),
         "else if": Text("else if () {") + Key("enter:2") + Text("}")
         + Key("up:2, end, left:3"),
         "else": Text("else {}") + Key("left, enter, up, end, enter"),
+        "include": Text("#include <>") + Key("left"),
+        "include <package>": Text("#include <%(package)s>"),
+        "print": Text("printf()") + Key("left"),
+        "print string": Text('print("")') + Key("left:2"),
     }
+    extras = [
+        Choice("package", common_packages),        
+    ]
 
 """ Below is is everythong needed to declare variables """
 def declare_variable_mod(modifier, data_type, text):
