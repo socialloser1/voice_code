@@ -30,7 +30,7 @@ def function_call(text):
     Key("left").execute()
 
 def equals_variable(text):
-    Text("= %s"%(format.snake_case(text))).execute()
+    Text(" = %s"%(format.snake_case(text))).execute()
 
 class OperationsRule(MappingRule):
     """ General operations, such as assignments """
