@@ -19,30 +19,22 @@ from dragonfly import (
     Text
 )
 
-command_mode = True
-
-# Remember to set command_mode = False when insert/visual/select etc!
 def insertion(insert, line = -1):
-    global command_mode
-    if not command_mode:
-        enable_commande_mode()
+    command_mode()
 
     if 0 < line:
         go_to_line(line)
 
     Key(insert).execute()
-    command_mode = False
 
-def enable_command_mode():
-    global command_mode
+def command_mode():
     Key("escape").execute()
-    command_mode = True
 
 def set_command(command_choice):
     execute_command("set " + command_choice)
 
 def execute_command(text):
-    enable_command_mode()
+    command_mode()
     Text(":%s"%(text)).execute()
     Key("enter").execute()
 
@@ -69,10 +61,10 @@ class MainRule(MappingRule):
     mapping = {
         "[use] insert [<insert>]": Function(insertion, extra = {"insert"}),
         "[use] insert [<insert>] line <line>": Function(insertion, extra={"insert", "line"}),
-        "[enable] command mode":  Function(enable_command_mode),
+        "[enable] command mode":  Function(command_mode),
         "[go to] line <line>": Function(go_to_line, extra = {"line"}),
-        "[use] undo": Function(enable_command_mode) + Key("u"),
-        "[use] redo": Function(enable_command_mode) + Key("c-R"),
+        "[use] undo": Function(command_mode) + Key("u"),
+        "[use] redo": Function(command_mode) + Key("c-R"),
         "[use] write to file": Function(execute_command, text = "w"),
         "[use] quit": Function(execute_command, text = "q"),
         "command <command>": Function(execute_command, extras = {"command"}),
