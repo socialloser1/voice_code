@@ -43,7 +43,7 @@ class KeywordsRule(MappingRule):
         Choice("package", common_packages),        
     ]
 
-""" Below is is everythong needed to declare variables """
+""" Below is is everythong needed to declare functions, classes and variables """
 def declare_variable_mod(modifier, data_type, text):
     text = format.snake_case(text)
     if modifier == None or modifier == "":
@@ -68,6 +68,11 @@ def declare_signed(data_type, text):
 def declare_unsigned(data_type, text):
     declare_variable_mod("unsigned", data_type, text)
 
+def define_function(data_type, text):
+    Text("%s %s() {"
+            %(data_type, format.snake_case(text))).execute()
+    Key("enter:2, rbrace, up:2, end, left:3").execute()
+
 class VariablesRule(MappingRule):
 
     data_types = {
@@ -83,6 +88,7 @@ class VariablesRule(MappingRule):
             "long <text> as <data_type>": Function(declare_long, extra = {"data_type", "text"}),
             "signed <text> as <data_type>": Function(declare_signed, extra = {"data_type", "text"}),
             "unsigned <text> as <data_type>": Function(declare_unsigned, extra = {"data_type", "text"}),
+            "defunc <text> return <data_type>": Function(define_function, extra = {"data_type", "text"}),
     }
     extras = [
             Choice("data_type", data_types),
