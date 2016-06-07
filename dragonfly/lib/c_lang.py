@@ -63,7 +63,7 @@ class KeywordsRule(MappingRule):
         "for range <i> decrement": Text("for (int i = %(i)s, 0 <= i, i--) {}")
         + Key("left, enter, up, end, enter"),
         "include": Text("#include <>") + Key("left"),
-        "include <package>": Text("#include <%(package)s>.h"),
+        "include <package>": Text("#include <%(package)s.h>"),
         "define": Text("#define "),
         "print": Text("printf();") + Key("left:2"),
         "print string": Text('printf("\\n");') + Key("left:5"),
