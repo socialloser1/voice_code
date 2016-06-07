@@ -23,7 +23,7 @@ from dragonfly import (
 )
 
 def equals_variable(text):
-    Text(" = %s;"%(format.snake_case(text)))
+    Text(" = %s;"%(format.snake_case(text))).execute()
 
 """ MappingRule for keywords """
 class KeywordsRule(MappingRule):
