@@ -48,6 +48,7 @@ class KeywordsRule(MappingRule):
         + Key("left, enter, up, end, enter"),
         "include": Text("#include <>") + Key("left"),
         "include <package>": Text("#include <%(package)s>"),
+        "define": Text("#define "),
         "print": Text("printf();") + Key("left:2"),
         "print string": Text('printf("\\n");') + Key("left:5"),
         "return": Text("return ;") + Key("left"),
