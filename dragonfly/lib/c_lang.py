@@ -36,8 +36,8 @@ class KeywordsRule(MappingRule):
         "else": Text("else {}") + Key("left, enter, up, end, enter"),
         "include": Text("#include <>") + Key("left"),
         "include <package>": Text("#include <%(package)s>"),
-        "print": Text("printf()") + Key("left"),
-        "print string": Text('print("")') + Key("left:2"),
+        "print": Text("printf();") + Key("left:2"),
+        "print string": Text('printf("");') + Key("left:3"),
     }
     extras = [
         Choice("package", common_packages),        
