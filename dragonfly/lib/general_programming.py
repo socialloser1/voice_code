@@ -29,16 +29,21 @@ def function_call(text):
     # Place cursor inside parens
     Key("left").execute()
 
-
+def equals_variable(text):
+    Text("= %s"%(format.snake_case(text))).execute()
 
 class OperationsRule(MappingRule):
     """ General operations, such as assignments """
     mapping = {
         "assign <text>": Function(assignment, extra = {"text"}),
         "call <text>": Function(function_call, extra = {"text"}),
+        "ekint <n>": Text(" = %(n)d"),
+        "eknegint <n>": Text(" = -%(n)d"),
+        "ekvar <text>": Function(equals_variable, extra = {"text"}),
     }
     extras = [
-        Dictation("text"),        
+        Dictation("text"),
+        Integer("n", 0, 10000),
     ]
 
 class SymbolsRule(MappingRule):
@@ -50,8 +55,12 @@ class SymbolsRule(MappingRule):
         "Pew": Text(" + "),
         "Pec": Text(" += "),
         "Nay": Text(" - "),
-        "Nayc": Text(" =- "),
+        "Nayc": Text(" -= "),
         "Ek": Text(" = "),
+        "Not ek": Text(" != "),
+        "Ekek": Text(" == "),
+        "Lek": Text(" <= "),
+        "Gek": Text(" >= "),
         "Krax": Key("lbrace, rbrace, left"),
         "Brax": Key("lbracket, rbracket, left"),
         "Prain": Key("lparen, rparen, left"),

@@ -25,10 +25,10 @@ from dragonfly import (
 """ MappingRule for keywords """
 class KeywordsRule(MappingRule):
     mapping = {
-            "if": Text("if () {") + Key("enter:2") + Text("}") + Key("up:2, end, left:3"),
-            "else if": Text("else if () {") + Key("enter:2") + Text("}")
-            + Key("up:2, end, left:3"),
-            "else": Text("else {}") + Key("left, enter, up, end, enter"),
+        "if": Text("if () {") + Key("enter:2") + Text("}") + Key("up:2, end, left:3"),
+        "else if": Text("else if () {") + Key("enter:2") + Text("}")
+        + Key("up:2, end, left:3"),
+        "else": Text("else {}") + Key("left, enter, up, end, enter"),
     }
 
 """ Below is is everythong needed to declare variables """
