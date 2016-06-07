@@ -41,6 +41,30 @@ class OperationsRule(MappingRule):
         Dictation("text"),        
     ]
 
+class SymbolsRule(MappingRule):
+    """ Math and programming symbols, as well as indentation """
+    mapping = {
+        "Leta": Text(" < "),
+        "Greta": Text(" > "),
+        "Legreta": Text(" <>") + Key("left"),
+        "Pew": Text(" + "),
+        "Pec": Text(" += "),
+        "Nay": Text(" - "),
+        "Nayc": Text(" =- "),
+        "Ek": Text(" = "),
+        "Krax": Key("lbrace, rbrace, left"),
+        "Brax": Key("lbracket, rbracket, left"),
+        "Prain": Key("lparen, rparen, left"),
+        "Duotes": Key("dquote, dquote, left"),
+        "Indent [<n>]": Key("tab:%(n)d"),
+    }
+    extras = [
+        Integer("n", 1, 8),    
+    ]
+    defaults = {
+        "n": 1,        
+    }
+
 class KeywordsRule(MappingRule):
     mapping = {
         "if": Text("if"),
@@ -67,10 +91,13 @@ def disable_rule(rule):
         grammar.load()
 
 class MainRule(MappingRule):
-    """ Only for enabling and disabling other rules in this grammar """
+    """ Only for enabling and disabling other rules in this grammar.
+    Note that the rules MUST be added in the 'rules' dict below for them to
+    be activated by the 'general programming enable'-command !!! """
     rules = {
         "keywords": KeywordsRule(),
         "operations": OperationsRule(),
+        "symbols": SymbolsRule(),
     }
 
     mapping = {

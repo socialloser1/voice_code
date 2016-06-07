@@ -71,29 +71,29 @@ Bass 2..99                            = {Backspace_$1};
 
 
 
-# General formatting
-Indent                                = {Space_4};
-Prain                                 = '()' {Left};
-Okra                                  = '{';
-Krax                                  = '{}' {Left};
-Brax                                  = '[]' {Left};
-Obra                                  = '[';
-Squotes                               = "''" {Left};
-Duotes                                = '""' {Left};
+# General formatting NOW IN DRAGONFLY INSTEAD
+# Indent                                = {Space_4};
+# Prain                                 = '()' {Left};
+# Okra                                  = '{';
+# Krax                                  = '{}' {Left};
+# Brax                                  = '[]' {Left};
+# Obra                                  = '[';
+# Squotes                               = "''" {Left};
+# Duotes                                = '""' {Left};
 
-# Math symbols
-Leta                                  = {<};
-Greta                                 = {>};
-Pew                                   = {+};
-Pec                                   = '+=';
-Spew                                  = {Space} {+} {Space};
-Spec                                  = {Space} '+=' {Space};
-Nay                                   = {-};
-Nayc                                  = '=-';
-Snay                                  = {Space} {-} {Space};
-Snayc                                 = {Space} '=-' {Space};
-Ek                                    = '=';
-Sec                                   = {Space} '=' {Space};
+# Math symbols NOW IN DRAGONFLY INSTEAD
+# Leta                                  = {<};
+# Greta                                 = {>};
+# Pew                                   = {+};
+# Pec                                   = '+=';
+# Spew                                  = {Space} {+} {Space};
+# Spec                                  = {Space} '+=' {Space};
+# Nay                                   = {-};
+# Nayc                                  = '=-';
+# Snay                                  = {Space} {-} {Space};
+# Snayc                                 = {Space} '=-' {Space};
+# Ek                                    = '=';
+# Sec                                   = {Space} '=' {Space};
 
 # Bash commands
 Chadirr                               = {c} {d} {Space};

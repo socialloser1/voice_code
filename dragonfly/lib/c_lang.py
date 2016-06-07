@@ -31,28 +31,46 @@ class KeywordsRule(MappingRule):
             "else": Text("else {}") + Key("left, enter, up, end, enter"),
     }
 
-def declare_variable(modifier, data_type, text):
-    if modifier == None or modifer == "":
-        declaration + "%s %s"%(data_type, text)
+""" Below is is everythong needed to declare variables """
+def declare_variable_mod(modifier, data_type, text):
+    text = format.snake_case(text)
+    if modifier == None or modifier == "":
+        declaration = "%s %s;"%(data_type, text)
     else:
-        declaration + "%s %s %s"%(modifier, data_type, text)
+        declaration = "%s %s %s;"%(modifier, data_type, text)
     
     Text(declaration).execute()
 
-def test(text, data_type):
-    Text("%s %s;"%(data_type, text)).execute()
+def declare_variable(data_type, text):
+    declare_variable_mod(None, data_type, text)
+
+def declare_short(data_type, text):
+    declare_variable_mod("short", data_type, text)
+
+def declare_long(data_type, text):
+    declare_variable_mod("long", data_type, text)
+
+def declare_signed(data_type, text):
+    declare_variable_mod("signed", data_type, text)
+
+def declare_unsigned(data_type, text):
+    declare_variable_mod("unsigned", data_type, text)
 
 class VariablesRule(MappingRule):
 
     data_types = {
             "integer": "int",
             "float": "float",
-            "char": "char",
+            "character": "char",
             "double": "double",
     }
 
     mapping = {
-            "declare <text> as <data_type>": Function(test, extra = {"text", "data_type"}),
+            "declare <text> as <data_type>": Function(declare_variable, extra = {"data_type", "text"}),
+            "short <text> as <data_type>": Function(declare_short, extra = {"data_type", "text"}),
+            "long <text> as <data_type>": Function(declare_long, extra = {"data_type", "text"}),
+            "signed <text> as <data_type>": Function(declare_signed, extra = {"data_type", "text"}),
+            "unsigned <text> as <data_type>": Function(declare_unsigned, extra = {"data_type", "text"}),
     }
     extras = [
             Choice("data_type", data_types),
