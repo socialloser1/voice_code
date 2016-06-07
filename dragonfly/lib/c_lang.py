@@ -22,6 +22,8 @@ from dragonfly import (
     Choice
 )
 
+def equals_variable(text):
+    Text(" = %s;"%(format.snake_case(text)))
 
 """ MappingRule for keywords """
 class KeywordsRule(MappingRule):
@@ -53,11 +55,15 @@ class KeywordsRule(MappingRule):
         "print string": Text('printf("\\n");') + Key("left:5"),
         "return": Text("return ;") + Key("left"),
         "return <boolean_int>": Text("return %(boolean_int)d;"),
+        "ekint <i>": Text(" = %(i)d;"),
+        "eknegint <i>": Text(" = -%(i)d;"),
+        "ekvar <text>": Function(equals_variable, extras = {"text"}),
     }
     extras = [
         Choice("package", common_packages),        
         Choice("boolean_int", boolean_ints),
         Integer("i", 0, 10000),
+        Dictation("text"),
     ]
 
 """ Below is is everythong needed to declare functions, classes and variables """
