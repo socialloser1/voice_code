@@ -74,6 +74,14 @@ class SymbolsRule(MappingRule):
         "Hash": Key("hash"),
         "Percent": Key("percent"),
         "U score": Key("underscore"),
+        "Newline": Text("\\n"),
+        "Or": Text(" || "),
+        "Bitwise or": Text(" | "),
+        "And": Text(" && "),
+        "Bitwise and": Text(" & "),
+        "Ex or": Text(" ^ "),
+        "Bitwise left": Text(" << "),
+        "Bitwise right":Text(" >> "),
     }
     extras = [
         Integer("n", 1, 8),    
