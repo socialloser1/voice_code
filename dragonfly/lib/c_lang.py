@@ -72,6 +72,10 @@ class KeywordsRule(MappingRule):
         "ekint <i>": Text(" = %(i)d;"),
         "eknegint <i>": Text(" = -%(i)d;"),
         "ekvar <text>": Function(equals_variable, extras = {"text"}),
+        "integer": Text("int"),
+        "float": Text("float"),
+        "double": Text("double"),
+        "character": Text("char"),
     }
     extras = [
         Choice("package", common_packages),        
