@@ -90,6 +90,9 @@ def declare_variable_mod(modifier, data_type, text):
     
     Text(declaration).execute()
 
+def declare_pointer(data_type, text):
+    declare_variable_mod(None, data_type, "*%s"%(text))
+
 def declare_variable(data_type, text):
     declare_variable_mod(None, data_type, text)
 
@@ -110,6 +113,12 @@ def define_function(data_type, text):
             %(data_type, format.snake_case(text))).execute()
     Key("enter, rbrace, up, end, left:3").execute()
 
+def pointer_to(text):
+    Text("&%s"%(format.snake_case(text))).execute()
+
+def deref_pointer(text):
+    Text("*%s"%(format.snake_case(text))).execute()
+
 class VariablesRule(MappingRule):
 
     data_types = {
@@ -117,15 +126,19 @@ class VariablesRule(MappingRule):
             "float": "float",
             "character": "char",
             "double": "double",
+            "void": "void",
     }
 
     mapping = {
             "declare <text> as <data_type>": Function(declare_variable, extra = {"data_type", "text"}),
+            "declare <text> as <data_type> pointer": Function(declare_pointer, extra = {"data_type", "text"}),
             "short <text> as <data_type>": Function(declare_short, extra = {"data_type", "text"}),
             "long <text> as <data_type>": Function(declare_long, extra = {"data_type", "text"}),
             "signed <text> as <data_type>": Function(declare_signed, extra = {"data_type", "text"}),
             "unsigned <text> as <data_type>": Function(declare_unsigned, extra = {"data_type", "text"}),
             "defunc <text> return <data_type>": Function(define_function, extra = {"data_type", "text"}),
+            "pointer to <text>": Function(pointer_to, extra = {"text"}),
+            "deref <text>": Function(deref_pointer, extra = {"text"}),
     }
     extras = [
             Choice("data_type", data_types),
