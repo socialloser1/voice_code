@@ -75,7 +75,7 @@ class SymbolsRule(MappingRule):
         "Hash": Key("hash"),
         "Percent": Key("percent"),
         "U score": Key("underscore"),
-        "Newline": Text("\\n"),
+        "Newline": Key("backslash, n"),
         "Or": Text(" || "),
         "Bitwise or": Text(" | "),
         "And": Text(" && "),
