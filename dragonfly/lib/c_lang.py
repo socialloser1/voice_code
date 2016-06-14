@@ -143,6 +143,8 @@ class VariablesRule(MappingRule):
             "defunc <text> return <data_type>": Function(define_function, extra = {"data_type", "text"}),
             "pointer to <text>": Function(pointer_to, extra = {"text"}),
             "deref <text>": Function(deref_pointer, extra = {"text"}),
+            "size of <text>": Text("sizeof(%(variable)s)"),
+            "size of": Text("sizeof()") + Key("left"),
     }
     extras = [
             Choice("data_type", data_types),
