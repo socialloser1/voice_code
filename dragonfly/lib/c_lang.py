@@ -58,9 +58,9 @@ class KeywordsRule(MappingRule):
         "else": Text("else {}") + Key("left, enter, up, end, enter"),
         "while": Text("while () {") + Key("enter, rbrace, up, end, left:3"),
         "for": Text("for () {") + Key("enter, rbrace, up, end, left:3"),
-        "for range <i> increment": Text("for (int i = 0, i < %(i)s, i++) {}")
+        "for range <i> increment": Text("for (int i = 0; i < %(i)s; i++) {}")
         + Key("left, enter, up, end, enter"),
-        "for range <i> decrement": Text("for (int i = %(i)s, 0 <= i, i--) {}")
+        "for range <i> decrement": Text("for (int i = %(i)s; 0 <= i; i--) {}")
         + Key("left, enter, up, end, enter"),
         "include": Text("#include <>") + Key("left"),
         "include <package>": Text("#include <%(package)s.h>"),
