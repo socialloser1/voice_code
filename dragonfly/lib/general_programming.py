@@ -83,6 +83,8 @@ class SymbolsRule(MappingRule):
         "Ex or": Text(" ^ "),
         "Bitwise left": Text(" << "),
         "Bitwise right":Text(" >> "),
+        "Py and": Text("and"),
+        "Py or": Text("or"),
     }
     extras = [
         Integer("n", 1, 8),    

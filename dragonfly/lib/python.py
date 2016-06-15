@@ -8,6 +8,10 @@ Version: 2016-05-27
 """
 import format
 
+# NOTE: Some words, like 'and' and 'or' do not result in Python syntax,
+# general_programming is mainly aimed at C languages!
+from general_programming import SymbolsRule
+
 from dragonfly import (
     Function,
     MappingRule,
@@ -84,6 +88,7 @@ class MainRule( MappingRule ):
 # Load and disable grammar
 grammar = Grammar('python')
 grammar.add_rule(MainRule())
+grammar.add_rule(SymbolsRule())
 grammar.load()
 grammar.disable()
 
