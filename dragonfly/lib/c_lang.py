@@ -145,6 +145,7 @@ class VariablesRule(MappingRule):
             "deref <text>": Function(deref_pointer, extra = {"text"}),
             "size of <text>": Text("sizeof(%(variable)s)"),
             "size of": Text("sizeof()") + Key("left"),
+            "type <data_type>": Text("%(data_type)s"),
     }
     extras = [
             Choice("data_type", data_types),
