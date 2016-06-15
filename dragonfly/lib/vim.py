@@ -3,7 +3,7 @@
 This module contains vim commands.
 
 Author: Simon Larsen
-Version: 2016-06-02
+Version: 2016-06-15
 
 """
 import format
@@ -33,9 +33,12 @@ def command_mode():
 def set_command(command_choice):
     execute_command("set " + command_choice)
 
-def execute_command(text):
+def execute_command(command, force = False):
     command_mode()
-    Text(":%s"%(text)).execute()
+    if force:
+        Text(":%s!"%(command)).execute()
+    else:
+        Text(":%s"%(command)).execute()
     Key("enter").execute()
 
 def go_to_line(line):
@@ -65,10 +68,8 @@ class MainRule(MappingRule):
         "[go to] line <line>": Function(go_to_line, extra = {"line"}),
         "[use] undo": Function(command_mode) + Key("u"),
         "[use] redo": Function(command_mode) + Key("c-R"),
-        "[use] write to file": Function(execute_command, text = "w"),
-        "[use] quit": Function(execute_command, text = "q"),
         "command <command>": Function(execute_command, extras = {"command"}),
-        "force command <command>": Function(execute_command, text = "%(command)s!"),
+        "force command <command>": Function(execute_command, extras = {"command"}, force = True),
     }
     extras = [
         Dictation("text"),
