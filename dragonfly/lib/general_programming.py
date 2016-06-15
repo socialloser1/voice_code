@@ -2,8 +2,12 @@
 found in most object oriented programming. Mainly consists of
 keywords such as 'if', 'and' etc.
 
+This module is fully compatible for use in VIM in Bash on Windows.
+It is partially compatible with other text editors like Sublime Text.
+Some commands may behave unexpededly in the latter.
+
 Author: Simon Larsen
-Version: 2016-06-03
+Version: 2016-06-15
 """
 import format
 
@@ -67,6 +71,7 @@ class SymbolsRule(MappingRule):
         "Ekek": Text(" == "),
         "Lek": Text(" <= "),
         "Gek": Text(" >= "),
+        "Doll": Key("dollar"),
         "Krax": Key("lbrace, rbrace, left"),
         "Brax": Key("lbracket, rbracket, left"),
         "Prain": Key("lparen, rparen, left"),
@@ -85,6 +90,8 @@ class SymbolsRule(MappingRule):
         "Bitwise right":Text(" >> "),
         "Py and": Text("and"),
         "Py or": Text("or"),
+        "See comment": Text("// "),
+        "See block comment": Text("/**") + Key("enter:2") + Text("/") + Key("up, space"),
     }
     extras = [
         Integer("n", 1, 8),    
