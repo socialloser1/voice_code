@@ -68,6 +68,7 @@ class MainRule(MappingRule):
         "[go to] line <line>": Function(go_to_line, extra = {"line"}),
         "[use] undo": Function(command_mode) + Key("u"),
         "[use] redo": Function(command_mode) + Key("c-R"),
+        "[use] redraw": Function(command_mode) + Key("c-l"),
         "[use] delete line": Function(command_mode) + Key("dd"),
         "[use] delete line <line>": Function(go_to_line, extra = {"line"}) + Key("dd"),
         "command <command>": Function(execute_command, extras = {"command"}),
