@@ -34,15 +34,17 @@ def set_command(command_choice):
     execute_command("set " + command_choice)
 
 def execute_command(command, force = False):
-    command_mode()
-    if force:
-        Text(":%s!"%(command)).execute()
-    else:
-        Text(":%s"%(command)).execute()
+    enter_command(command, force)
     Key("enter").execute()
 
+def enter_command(command, force = False):
+    command_mode()
+    command.execute()
+    if force:
+        Text("!").execute()
+
 def go_to_line(line):
-    execute_command(str(line))
+    execute_command(Text(":%s"%(line)))
 
 class MainRule(MappingRule):
     # Different points of insertion
@@ -56,9 +58,11 @@ class MainRule(MappingRule):
     }
 
     commands = {
-        "write": "w",
-        "quit": "q",
-        "write and quit": "wq",
+            "write": Text(":w"),
+            "quit": Text(":q"),
+            "write and quit": Text(":wq"),
+            "search and replace": Text(":%s///gc") + Key("left:4"),
+            "search and replace precise": Text(":%s/\<\>//gc") + Key("left:6"),
     }
 
     mapping = {
@@ -71,8 +75,10 @@ class MainRule(MappingRule):
         "[use] redraw": Function(command_mode) + Key("c-l"),
         "[use] delete line": Function(command_mode) + Key("d, d"),
         "[use] delete line <line>": Function(go_to_line, extra = {"line"}) + Key("d, d"),
-        "command <command>": Function(execute_command, extras = {"command"}),
-        "force command <command>": Function(execute_command, extras = {"command"}, force = True),
+        "command <command>": Function(enter_command, extra = {"command"}),
+        "execute command <command>": Function(execute_command, extra = {"command"}),
+        "force command <command>": Function(enter_command, extra = {"command"}, force = True),
+        "force execute command <command>": Function(execute_command, extra = {"command"}, force = True),
     }
     extras = [
         Dictation("text"),
