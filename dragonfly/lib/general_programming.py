@@ -80,6 +80,8 @@ class SymbolsRule(MappingRule):
         "Hash": Key("hash"),
         "Percent": Key("percent"),
         "U score": Key("underscore"),
+        "Amp": Key("ampersand"),
+        "Bang": Key("exclamation"),
         "Newline": Key("backslash, n"),
         "Or": Text(" || "),
         "Bitwise or": Text(" | "),
