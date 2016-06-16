@@ -57,7 +57,9 @@ class SymbolsRule(MappingRule):
         "Greta": Text(" > "),
         "Legreta": Text(" <>") + Key("left"),
         "Multi": Text(" * "),
+        "Multek": Text(" *= ")
         "Div": Text(" / "),
+        "Divek": Text(" /= "),
         "Mod": Key("space, percent, space"),
         "Not": Text("!"),
         "Pew": Text(" + "),
