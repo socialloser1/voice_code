@@ -75,6 +75,8 @@ class MainRule(MappingRule):
         "[use] redraw": Function(command_mode) + Key("c-l"),
         "[use] delete line": Function(command_mode) + Key("d, d"),
         "[use] delete line <line>": Function(go_to_line, extra = {"line"}) + Key("d, d"),
+        "yes": Text("Y"),
+        "no": Text("N"),
         "command <command>": Function(enter_command, extra = {"command"}),
         "execute command <command>": Function(execute_command, extra = {"command"}),
         "force command <command>": Function(enter_command, extra = {"command"}, force = True),
