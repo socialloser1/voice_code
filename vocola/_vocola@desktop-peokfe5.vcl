@@ -30,10 +30,11 @@ De line                               = {End} {Shift + Home} {Del};
 
 
 Bo line                               = {Home};
-Seco line                             = {End} ';';
-Seco du                               = {End} ';' {Enter};
-Reco line                             = {End} ':';
-Reco du                               = {End} ':' {Enter};
+Seco                                  = {End} ';';
+See dunk                              = {End} ';' {Enter};
+Reco                                  = {End} ':';
+Ree dunk                              = {End} ':' {Enter};
+Co dunk                               = {End} ',' {Enter};
 Cleft                                 = {Ctrl + Left};
 Cleft 1..99                           = {Ctrl + Left_$1};
 Crait                                 = {Ctrl + Right};

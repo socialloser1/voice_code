@@ -76,6 +76,8 @@ class KeywordsRule(MappingRule):
         "float": Text("float"),
         "double": Text("double"),
         "character": Text("char"),
+        "true": Text("true"),
+        "false": Text("false"),
     }
     extras = [
         Choice("package", common_packages),        

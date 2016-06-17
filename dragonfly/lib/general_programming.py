@@ -53,6 +53,7 @@ class OperationsRule(MappingRule):
 class SymbolsRule(MappingRule):
     """ Math and programming symbols, as well as indentation """
     mapping = {
+        "New line": Text("\\n"),
         "Leta": Text(" < "),
         "Greta": Text(" > "),
         "Legreta": Text(" <>") + Key("left"),
