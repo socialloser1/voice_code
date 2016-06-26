@@ -54,6 +54,7 @@ class SymbolsRule(MappingRule):
     """ Math and programming symbols, as well as indentation """
     mapping = {
         "New line": Text("\\n"),
+        "Sqrt": Text("sqrt()") + Key("left"),
         "Leta": Text(" < "),
         "Greta": Text(" > "),
         "Legreta": Text(" <>") + Key("left"),
@@ -84,6 +85,7 @@ class SymbolsRule(MappingRule):
         "Percent": Key("percent"),
         "U score": Key("underscore"),
         "Amp": Key("ampersand"),
+        "Star": Text("*"),
         "Bang": Key("exclamation"),
         "Newline": Key("backslash, n"),
         "Or": Text(" || "),
