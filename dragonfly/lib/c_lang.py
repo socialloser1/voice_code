@@ -133,6 +133,11 @@ class VariablesRule(MappingRule):
             "character": "char",
             "double": "double",
             "void": "void",
+            "short": "short",
+            "long": "long",
+            "signed": "signed",
+            "unsigned": "unsigned",
+            "boolean": "bool",
     }
 
     mapping = {
@@ -148,6 +153,7 @@ class VariablesRule(MappingRule):
             "size of <text>": Text("sizeof(%(variable)s)"),
             "size of": Text("sizeof()") + Key("left"),
             "type <data_type>": Text("%(data_type)s"),
+            "cast <data_type>": Text("(%(data_type)s)"),
     }
     extras = [
             Choice("data_type", data_types),
