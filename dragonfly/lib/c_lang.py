@@ -25,6 +25,9 @@ from dragonfly import (
 def equals_variable(text):
     Text(" = %s;"%(format.snake_case(text))).execute()
 
+def gcc(text):
+    Text("gcc --std=c99 %s -o %s"%(format.snake_case(text) + ".c", format.snake_case(text))).execute()
+
 """ MappingRule for keywords """
 class KeywordsRule(MappingRule):
     common_packages = {
@@ -78,6 +81,7 @@ class KeywordsRule(MappingRule):
         "character": Text("char"),
         "true": Text("true"),
         "false": Text("false"),
+        "compile see code <text>": Function(gcc, extra = {"text"}),
     }
     extras = [
         Choice("package", common_packages),        

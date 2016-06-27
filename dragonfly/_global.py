@@ -45,6 +45,7 @@ def lowercase(text):
 def uppercase(text):
     Text(str(text).upper()).execute()
 
+
 class MainRule( MappingRule ):
 	""" This rule always loads when NatLinks starts, and is always enabled.
 	Therefore, the mappings below are always available.
@@ -59,7 +60,6 @@ class MainRule( MappingRule ):
 	    "python": python,
 	    "vim": vim,
             "general programming": general_programming,
-            "total war": total_war,
             "see": c_lang,
 	}
 
@@ -75,6 +75,7 @@ class MainRule( MappingRule ):
         "[use] disable grammar <choice>" : Function(disable_grammar, extra = {"choice"}),
         "[use] lowercase <text>": Function(lowercase, extra = {"text"}),
         "[use] uppercase <text>": Function(uppercase, extra = {"text"}),
+        "[use] compile see code <text>": Function(gcc, extra = {"text"}),
 	}
 	extras = [
                 Dictation("text"),
