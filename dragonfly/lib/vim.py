@@ -63,6 +63,7 @@ class MainRule(MappingRule):
             "write and quit": Text(":wq"),
             "search and replace": Text(":%s///gc") + Key("left:4"),
             "search and replace precise": Text(":%s/\<\>//gc") + Key("left:6"),
+            "search precise": Text("/\<\>") + Key("left:2"),
     }
 
     mapping = {

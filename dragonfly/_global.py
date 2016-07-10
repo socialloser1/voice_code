@@ -45,6 +45,13 @@ def lowercase(text):
 def uppercase(text):
     Text(str(text).upper()).execute()
 
+def switch_desktop(direction):
+    if direction == "left":
+        Key("cw-left").execute()
+    elif direction == "right":
+        Key("cw-right").execute()
+    else:
+        print("Incorrect direction!")
 
 class MainRule( MappingRule ):
 	""" This rule always loads when NatLinks starts, and is always enabled.
@@ -63,6 +70,12 @@ class MainRule( MappingRule ):
             "see": c_lang,
 	}
 
+        directions = {
+            "left": "left",
+            "right": "right",
+        }
+
+
 	mapping = { 
         "[use] snake <text>": Function( snake_case_format, extra = {"text"} ),
         "[use] camel <text>": Function( camel_case_format, extra = {"text"} ),
@@ -75,11 +88,12 @@ class MainRule( MappingRule ):
         "[use] disable grammar <choice>" : Function(disable_grammar, extra = {"choice"}),
         "[use] lowercase <text>": Function(lowercase, extra = {"text"}),
         "[use] uppercase <text>": Function(uppercase, extra = {"text"}),
-        "[use] compile see code <text>": Function(gcc, extra = {"text"}),
+        "[switch] desktop <direction>": Function(switch_desktop, extra = {"direction"}),
 	}
 	extras = [
                 Dictation("text"),
                 Choice("choice", grammar_modules),
+                Choice("direction", directions),
 	]
 
 grammar = Grammar('global')
