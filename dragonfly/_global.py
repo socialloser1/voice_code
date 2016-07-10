@@ -45,38 +45,27 @@ def lowercase(text):
 def uppercase(text):
     Text(str(text).upper()).execute()
 
-def switch_desktop(direction):
-    if direction == "left":
-        Key("cw-left").execute()
-    elif direction == "right":
-        Key("cw-right").execute()
-    else:
-        print("Incorrect direction!")
 
 class MainRule( MappingRule ):
-	""" This rule always loads when NatLinks starts, and is always enabled.
-	Therefore, the mappings below are always available.
+    """ This rule always loads when NatLinks starts, and is always enabled.
+    Therefore, the mappings below are always available.
 
-	The grammars in the grammar_modules dictionary can be enable/disabled by saying:
-	'enable / disable grammar <name of module>'
+    The grammars in the grammar_modules dictionary can be enable/disabled by saying:
+    'enable / disable grammar <name of module>'
 
-	NOTE: There is as of yet NO compatability check between grammar modules, so beware
-	when enabling / disabling them!
-	"""
-	grammar_modules = {
-	    "python": python,
-	    "vim": vim,
-            "general programming": general_programming,
-            "see": c_lang,
-	}
-
-        directions = {
-            "left": "left",
-            "right": "right",
-        }
+    NOTE: There is as of yet NO compatability check between grammar modules, so beware
+    when enabling / disabling them!
+    """
+    grammar_modules = {
+        "python": python,
+        "vim": vim,
+        "general programming": general_programming,
+        "see": c_lang,
+    }
 
 
-	mapping = { 
+
+    mapping = { 
         "[use] snake <text>": Function( snake_case_format, extra = {"text"} ),
         "[use] camel <text>": Function( camel_case_format, extra = {"text"} ),
         "[use] pascal <text>": Function( pascal_case_format, extra = {"text"} ),
@@ -88,14 +77,38 @@ class MainRule( MappingRule ):
         "[use] disable grammar <choice>" : Function(disable_grammar, extra = {"choice"}),
         "[use] lowercase <text>": Function(lowercase, extra = {"text"}),
         "[use] uppercase <text>": Function(uppercase, extra = {"text"}),
+    }
+    extras = [
+        Dictation("text"),
+        Choice("choice", grammar_modules),
+    ]
+
+def switch_desktop(direction):
+    if direction == "left":
+        Key("cw-left").execute()
+    elif direction == "right":
+        Key("cw-right").execute()
+    else:
+        print("Incorrect direction!")
+
+class WindowsRule(MappingRule):
+    """ This rule contains voice commands for manipulation windows and virtual desktops """
+    directions = {
+        "left": "left",
+        "right": "right",
+        "down": "down",
+        "up": "up",
+    }
+
+    mapping = {
         "[switch] desktop <direction>": Function(switch_desktop, extra = {"direction"}),
-	}
-	extras = [
-                Dictation("text"),
-                Choice("choice", grammar_modules),
-                Choice("direction", directions),
-	]
+        "[snap] window <direction>": Key("w-%(direction)s"),
+    }
+    extras = [
+        Choice("direction", directions),
+    ]
 
 grammar = Grammar('global')
 grammar.add_rule(MainRule())
+grammar.add_rule(WindowsRule())
 grammar.load()
