@@ -28,6 +28,27 @@ def equals_variable(text):
 def gcc(text):
     Text("gcc --std=c99 %s -o %s"%(format.snake_case(text) + ".c", format.snake_case(text))).execute()
 
+def scan(data_type, i):
+    string = 'scanf("'
+
+    for x in range(i-1):
+        string += "%" + "%s, "%(data_type)
+
+    string += "%" + '%s"'%(data_type)
+
+    # Append the pointer "placements"
+    for x in range(i):
+        string += ", "
+
+    # Finish the string and print
+    string += ");"
+    Text(string).execute()
+
+    # Place cursor
+    steps = 2 + (i-1)*2
+    Key("left:%d"%(steps)).execute()
+
+
 """ MappingRule for keywords """
 class KeywordsRule(MappingRule):
     common_packages = {
@@ -47,6 +68,14 @@ class KeywordsRule(MappingRule):
         "standard library": "stdlib",
         "string": "string",
         "time": "time",
+    }
+
+    # For scanning and printing
+    data_types = {
+        "integer": "d",
+        "float": "f",
+        "character": "c",
+        "string": "s",
     }
 
     boolean_ints = {
@@ -70,6 +99,7 @@ class KeywordsRule(MappingRule):
         "define": Text("#define "),
         "print": Text("printf();") + Key("left:2"),
         "print string": Text('printf("\\n");') + Key("left:5"),
+        "scan <data_type> <i>": Function(scan, extra = {"data_type", "i"}),
         "return": Text("return ;") + Key("left"),
         "return <boolean_int>": Text("return %(boolean_int)d;"),
         "ekint <i>": Text(" = %(i)d;"),
@@ -88,6 +118,7 @@ class KeywordsRule(MappingRule):
         Choice("boolean_int", boolean_ints),
         Integer("i", 0, 10000),
         Dictation("text"),
+        Choice("data_type", data_types),
     ]
 
 """ Below is is everythong needed to declare functions, classes and variables """
