@@ -7,6 +7,24 @@ Version: 2016-05-26
 
 """
 
+# the current year
+year = 16
+
+# A mapping of months to numbers
+months = {
+        "january": "01",
+        "february": "02",
+        "march": "03",
+        "april": "04",
+        "may": "05",
+        "june": "06",
+        "july": "07",
+        "august": "08",
+        "september": "09",
+        "october": "10",
+        "november": "11",
+        "december": "12",
+        }
 
 """ Takes a string parameter and returns the same string
 with snake case formatting.
@@ -80,4 +98,10 @@ returns them as uppercase.
 """
 def uppercase_letters( text ):
     return lowercase_letters(text).upper()
+
+def format_date(month, day):
+    """ Formats the input month and day 2016 """
+    global year
+    print "success"
+    return "%d-%s-%d"%(year, month, day)
 
