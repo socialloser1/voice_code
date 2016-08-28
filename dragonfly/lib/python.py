@@ -65,7 +65,7 @@ class MainRule( MappingRule ):
         "[use] pydoc": Function(doc_string),
         "[use] class <text>": Function(def_class, extra = {"text"}),
         "[use] assign <text> integer [<i>]": Function(assign_int, extra={"text", "i"}),
-        "[use] for range [<i>]": Text("for i in range(0, %(i)d):"),
+        "[use] for range [<i>]": Text("for i in range(%(i)d):"),
         "[use] for each <text>": Function(for_each, extra = {"text"}),
 	"doc string": Function(doc_string),
 
@@ -76,6 +76,11 @@ class MainRule( MappingRule ):
         "elif": Text("elif :") + Key("left"),
         "import": Text("import "),
         "test if": Text("if () {") + Key("enter:2") + Text("}"),
+        "while": Text("while :") + Key("left"),
+        "for": Text("for :") + Key("left"),
+        "length": Text("len()") + Key("left"),
+        "print": Text("print()") + Key("left"),
+        "print string": Text("print("")") + Key("left:2"),
 	}
 	extras = [
                 Dictation("text"),
