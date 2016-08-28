@@ -7,7 +7,7 @@ Version: 2016-05-26
 """
 
 from dragonfly import ( Key, Function, Grammar,
-                        Dictation, MappingRule, Text, Choice )
+                        Dictation, MappingRule, Text, Choice, Integer )
 
 from lib import (total_war, general_programming, format, python, c_lang, vim)
 
@@ -45,6 +45,9 @@ def lowercase(text):
 def uppercase(text):
     Text(str(text).upper()).execute()
 
+def print_date(day, month):
+    Text(format.format_date(month, day)).execute()
+
 
 class MainRule( MappingRule ):
     """ This rule always loads when NatLinks starts, and is always enabled.
@@ -63,7 +66,10 @@ class MainRule( MappingRule ):
         "see": c_lang,
     }
 
-
+    def enabled_modules():
+        for current in grammar_modules:
+            if current.enabled():
+                print(current)
 
     mapping = { 
         "[use] snake <text>": Function( snake_case_format, extra = {"text"} ),
@@ -77,10 +83,14 @@ class MainRule( MappingRule ):
         "[use] disable grammar <choice>" : Function(disable_grammar, extra = {"choice"}),
         "[use] lowercase <text>": Function(lowercase, extra = {"text"}),
         "[use] uppercase <text>": Function(uppercase, extra = {"text"}),
+        "[use] list enabled modules": Function(enabled_modules),
+        "[use] date <day> of <month>": Function(format.format_date, extra = {"month, day"})
     }
     extras = [
         Dictation("text"),
         Choice("choice", grammar_modules),
+        Choice("month", format.months),
+        Integer("day", 1, 31),
     ]
 
 def switch_desktop(direction):
