@@ -53,7 +53,7 @@ class OperationsRule(MappingRule):
 class SymbolsRule(MappingRule):
     """ Math and programming symbols, as well as indentation """
     mapping = {
-        "New line": Text("\\n"),
+        "Insert new line": Text("\\n"),
         "Sqrt": Text("sqrt()") + Key("left"),
         "Leta": Text(" < "),
         "Greta": Text(" > "),
@@ -80,14 +80,14 @@ class SymbolsRule(MappingRule):
         "Brax": Key("lbracket, rbracket, left"),
         "Prain": Key("lparen, rparen, left"),
         "Duotes": Key("dquote, dquote, left"),
+        "squotes": Key("squote, squote, left"),
         "Indent [<n>]": Key("tab:%(n)d"),
         "Hash": Key("hash"),
-        "Percent": Key("percent"),
+        "Perk": Key("percent"),
         "U score": Key("underscore"),
         "Amp": Key("ampersand"),
         "Star": Text("*"),
         "Bang": Key("exclamation"),
-        "Newline": Key("backslash, n"),
         "Or": Text(" || "),
         "Bitwise or": Text(" | "),
         "And": Text(" && "),
@@ -95,8 +95,10 @@ class SymbolsRule(MappingRule):
         "Ex or": Text(" ^ "),
         "Bitwise left": Text(" << "),
         "Bitwise right":Text(" >> "),
-        "Py and": Text("and"),
-        "Py or": Text("or"),
+        # python 'and' and 'or'
+        "Pand": Text(" and "),
+        "Poor": Text(" or "),
+        # c style comment and block comment
         "See comment": Text("// "),
         "See block comment": Text("/**") + Key("enter:2") + Text("/") + Key("up, space"),
     }
