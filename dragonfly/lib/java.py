@@ -44,8 +44,8 @@ class KeywordsRule(MappingRule):
         + Key("left, enter, up, end, enter"),
         "include": Text("#include <>") + Key("left"),
         "include <package>": Text("#include <%(package)s.h>"),
-        "define": Text("#define "),
         "print": Text("printf();") + Key("left:2"),
+        "import": Text("import ;") + Key("left"),
         "print string": Text('printf("\\n");') + Key("left:5"),
         "return": Text("return ;") + Key("left"),
         "ekint <i>": Text(" = %(i)d;"),
@@ -90,7 +90,6 @@ def define_private_function(data_type, text):
 def define_main_function():
     Text("public static void main(String args) {").execute()
     Key("enter, rbrace, up, end, left:3").execute()
-
 
 def pointer_to(text):
     Text("&%s"%(format.snake_case(text))).execute()
