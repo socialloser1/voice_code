@@ -29,6 +29,11 @@ def equals_variable(text):
 """ MappingRule for keywords """
 class KeywordsRule(MappingRule):
     common_packages = {
+            "hash set": "java.util.HashSet",
+            "hash map": "java.util.HashMap",
+            "array list": "java.util.ArrayList",
+            "list": "java.util.List",
+            "scanner": "java.util.scanner",
     }
 
     mapping = {
@@ -46,6 +51,7 @@ class KeywordsRule(MappingRule):
         "include <package>": Text("#include <%(package)s.h>"),
         "print": Text("printf();") + Key("left:2"),
         "import": Text("import ;") + Key("left"),
+        "import <package>": Key("escape, colon, 1, enter, i") + Text("import %(package)s;"),
         "print string": Text('printf("\\n");') + Key("left:5"),
         "return": Text("return ;") + Key("left"),
         "ekint <i>": Text(" = %(i)d;"),
@@ -89,7 +95,7 @@ def define_private_function(data_type, text):
     
 def define_main_function():
     Text("public static void main(String args) {").execute()
-    Key("enter, rbrace, up, end, left:3").execute()
+    Key("enter, rbrace, up, end, enter").execute()
 
 def pointer_to(text):
     Text("&%s"%(format.snake_case(text))).execute()
@@ -113,6 +119,7 @@ class VariablesRule(MappingRule):
 
     mapping = {
             "declare <text> as <data_type>": Function(declare_variable, extra = {"data_type", "text"}),
+            "defunc main": Function(define_main_function),
             "defunc public <text> return <data_type>": Function(define_public_function, extra = {"data_type", "text"}),
             "defunc private <text> return <data_type>": Function(define_private_function, extra = {"data_type, text"}),
             "type <data_type>": Text("%(data_type)s"),
@@ -129,7 +136,7 @@ class VariablesRule(MappingRule):
 
 # Load and disable grammar
 grammar = Grammar("java")
-grammar.add_rule(VarvaiablesRule())
+grammar.add_rule(VariablesRule())
 grammar.add_rule(KeywordsRule())
 grammar.add_rule(SymbolsRule())
 grammar.load()
