@@ -3,7 +3,7 @@
 This module contains general formatting for the Python language.
 
 Author: Simon Larsen
-Version: 2016-05-27
+version: 2016-08-28
 
 """
 import format
