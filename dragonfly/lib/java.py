@@ -3,7 +3,7 @@
 This module contains general formatting for the Java language.
 
 Author: Simon Larsen
-Version: 16-08-28
+Version: 16-09-01
 
 """
 
@@ -104,6 +104,15 @@ def pointer_to(text):
 def deref_pointer(text):
     Text("*%s"%(format.snake_case(text))).execute()
 
+def declare_object_with_type(data_type, object_type):
+    Text("%s %s"%(object_type)).execute()
+    # go inside <>
+    Key("left").execute()
+    Text(data_type).execute()
+    # move right and space
+    # TODO: data_type is incorrect, needs to be replace with wrappers!
+    Key("right, space").execute()
+
 class VariablesRule(MappingRule):
 
     data_types = {
@@ -118,7 +127,7 @@ class VariablesRule(MappingRule):
             "boolean": "boolean",
     }
 
-    objects = {
+    object_types = {
             "array list": Text("ArrayList<>"),
             }
 
@@ -130,11 +139,11 @@ class VariablesRule(MappingRule):
             "type <data_type>": Text("%(data_type)s"),
             "cast <data_type>": Text("(%(data_type)s)"),
             # Declaring objects
-            "declare <object> type <data_type>": Function(declare_object, extra = {"text", "object"}),
+            "declare <object_type> type <data_type>": Function(declare_object, extra = {"text", "object_type"}),
     }
     extras = [
             Choice("data_type", data_types),
-            Choice("object", objects),
+            Choice("object_type", objects),
             Dictation("text"),
             Integer("n", 1, 10),
     ]
