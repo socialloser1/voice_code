@@ -61,10 +61,11 @@ target/
 .ipynb_checkpoints
 
 # Compiled files and Vim swap files
-.pyc
-.swp
+*.pyc
+*.swp
 
-
+# Vocola files
+*.vcl
 
 # For testing ideas
 main.py
