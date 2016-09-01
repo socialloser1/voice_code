@@ -51,7 +51,7 @@ class KeywordsRule(MappingRule):
         "include <package>": Text("#include <%(package)s.h>"),
         "print": Text("printf();") + Key("left:2"),
         "import": Text("import ;") + Key("left"),
-        "import <package>": Key("escape, colon, 1, enter, i") + Text("import %(package)s;"),
+        "import <package>": Key("escape, colon, 1, enter, O") + Text("import %(package)s;"),
         "print string": Text('printf("\\n");') + Key("left:5"),
         "return": Text("return ;") + Key("left"),
         "ekint <i>": Text(" = %(i)d;"),
@@ -61,6 +61,7 @@ class KeywordsRule(MappingRule):
         "float": Text("float"),
         "double": Text("double"),
         "character": Text("char"),
+        "new": Text("new "),
         "true": Text("true"),
         "false": Text("false"),
     }
