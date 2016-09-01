@@ -101,8 +101,6 @@ class SymbolsRule(MappingRule):
         # c style comment and block comment
         "See comment": Text("// "),
         "See block comment": Text("/**") + Key("enter:2") + Text("/") + Key("up, space"),
-        # this function takes you inside the closest, empty parens
-        "Inside [paren]": Text("/(.*)") + Key("enter") + Key("right") + Key("c-l"),
     }
     extras = [
         Integer("n", 1, 8),    
