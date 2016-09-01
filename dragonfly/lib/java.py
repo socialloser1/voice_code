@@ -104,11 +104,11 @@ def pointer_to(text):
 def deref_pointer(text):
     Text("*%s"%(format.snake_case(text))).execute()
 
-def declare_object_with_type(data_type, object_type):
-    Text("%s %s"%(object_type)).execute()
+def declare_object_with_type(object_type, wrapper):
+    Text(object_type).execute()
     # go inside <>
     Key("left").execute()
-    Text(data_type).execute()
+    Text(wrapper).execute()
     # move right and space
     # TODO: data_type is incorrect, needs to be replace with wrappers!
     Key("right, space").execute()
@@ -148,10 +148,10 @@ class VariablesRule(MappingRule):
             "type <data_type>": Text("%(data_type)s"),
             "cast <data_type>": Text("(%(data_type)s)"),
             # Declaring objects
-            "declare <object_type> type <data_type>": Function(declare_object, extra = {"text", "object_type"}),
+            "declare <object_type> type <wrapper>": Function(declare_object, extra = {"object_type", "wrapper"}),
     }
     extras = [
-            Choice("data_type", data_types),
+            Choice("wrapper", data_types),
             Choice("object_type", objects),
             Dictation("text"),
             Integer("n", 1, 10),
