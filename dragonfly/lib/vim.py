@@ -84,7 +84,7 @@ class MainRule(MappingRule):
         "force command <command>": Function(enter_command, extra = {"command"}, force = True),
         "force execute command <command>": Function(execute_command, extra = {"command"}, force = True),
         # moves cursor inside closest parentheses
-        "Inside [paren]": Text("/(.*)") + Key("enter") + Key("right") + Key("c-l"),
+        "Inside [paren]": Key("escape") + Text("/(.*)") + Key("enter") + Key("right") + Key("c-l"),
     }
     extras = [
         Dictation("text"),
