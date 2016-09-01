@@ -95,7 +95,7 @@ class MainRule(MappingRule):
         "execute command <command>": Function(execute_command, extra = {"command"}),
         "force command <command>": Function(enter_command, extra = {"command"}, force = True),
         "force execute command <command>": Function(execute_command, extra = {"command"}, force = True),
-        "search <text> format <formatting>": Function(search, extra = {"text, formatting"})
+        "search <text> format <formatting>": Function(search_for, extra = {"text, formatting"}),
         # moves cursor inside closest parentheses
         "Inside [paren]": Key("escape") + Text("/(.*)") + Key("enter") + Key("right") + Key("c-l"),
     }

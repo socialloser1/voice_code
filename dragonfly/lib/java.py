@@ -148,11 +148,12 @@ class VariablesRule(MappingRule):
             "type <data_type>": Text("%(data_type)s"),
             "cast <data_type>": Text("(%(data_type)s)"),
             # Declaring objects
-            "declare <object_type> type <wrapper>": Function(declare_object, extra = {"object_type", "wrapper"}),
+            "declare <object_type> type <wrapper>": Function(declare_object_with_type, extra = {"object_type", "wrapper"}),
     }
     extras = [
             Choice("wrapper", data_types),
-            Choice("object_type", objects),
+            Choice("object_type", object_types),
+            Choice("data_type", data_types),
             Dictation("text"),
             Integer("n", 1, 10),
     ]
