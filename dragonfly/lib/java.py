@@ -115,6 +115,16 @@ def declare_object_with_type(data_type, object_type):
 
 class VariablesRule(MappingRule):
 
+    wrappers = {
+            "integer": "Integer",
+            "short": "Short",
+            "float": "Float",
+            "character": "Character",
+            "double": "Double",
+            "long": "Long",
+            "boolean": "Boolean",
+            }
+
     data_types = {
             "integer": "int",
             "short": "short",
@@ -122,7 +132,6 @@ class VariablesRule(MappingRule):
             "character": "char",
             "double": "double",
             "void": "void",
-            "short": "short",
             "long": "long",
             "boolean": "boolean",
     }
