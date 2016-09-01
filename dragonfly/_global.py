@@ -3,7 +3,7 @@
 """ This module interfaces the global commands ( right now, only formatting ) With DNS via dragonfly.
 
 Author: Simon Larsen
-Version: 2016-05-26
+Version: 2016-08-31
 """
 
 from dragonfly import ( Key, Function, Grammar,

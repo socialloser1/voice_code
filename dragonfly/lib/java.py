@@ -118,6 +118,10 @@ class VariablesRule(MappingRule):
             "boolean": "boolean",
     }
 
+    objects = {
+            "array list": Text("ArrayList<>"),
+            }
+
     mapping = {
             "declare <text> as <data_type>": Function(declare_variable, extra = {"data_type", "text"}),
             "defunc main": Function(define_main_function),
@@ -125,9 +129,12 @@ class VariablesRule(MappingRule):
             "defunc private <text> return <data_type>": Function(define_private_function, extra = {"data_type, text"}),
             "type <data_type>": Text("%(data_type)s"),
             "cast <data_type>": Text("(%(data_type)s)"),
+            # Declaring objects
+            "declare <object> type <data_type>": Function(declare_object, extra = {"text", "object"}),
     }
     extras = [
             Choice("data_type", data_types),
+            Choice("object", objects),
             Dictation("text"),
             Integer("n", 1, 10),
     ]
