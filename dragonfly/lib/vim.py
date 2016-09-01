@@ -46,6 +46,12 @@ def enter_command(command, force = False):
 def go_to_line(line):
     execute_command(Text(":%s"%(line)))
 
+def search_for(text, formatting):
+    Key("escape").execute()
+    # print out search string
+    Text( "/%s"%(formatting(text)) ).execute()
+    Key("enter").execute()
+
 class MainRule(MappingRule):
     # Different points of insertion
     insert_points = {
@@ -56,6 +62,12 @@ class MainRule(MappingRule):
         "above": "O",
         "below": "o",
     }
+
+    formats = {
+            "no low": format.no_space_lower,
+            "no high": format.no_space_upper,
+            "snake": format.snake_case,
+            }
 
     commands = {
             "write": Text(":w"),
@@ -83,11 +95,13 @@ class MainRule(MappingRule):
         "execute command <command>": Function(execute_command, extra = {"command"}),
         "force command <command>": Function(enter_command, extra = {"command"}, force = True),
         "force execute command <command>": Function(execute_command, extra = {"command"}, force = True),
+        "search <text> format <formatting>": Function(search, extra = {"text, formatting"})
         # moves cursor inside closest parentheses
         "Inside [paren]": Key("escape") + Text("/(.*)") + Key("enter") + Key("right") + Key("c-l"),
     }
     extras = [
         Dictation("text"),
+        Choice("formatting", formats),
 	Choice("insert", insert_points),
         Choice("command", commands),
         Integer("line", 1, 10000),
