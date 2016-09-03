@@ -95,7 +95,7 @@ def define_private_function(data_type, text):
     Key("enter, rbrace, up, end, left:3").execute()
     
 def define_main_function():
-    Text("public static void main(String args) {").execute()
+    Text("public static void main(String[] args) {").execute()
     Key("enter, rbrace, up, end, enter").execute()
 
 def pointer_to(text):
