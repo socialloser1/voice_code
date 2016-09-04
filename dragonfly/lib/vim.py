@@ -98,6 +98,8 @@ class MainRule(MappingRule):
         "search <text> format <formatting>": Function(search_for, extra = {"text, formatting"}),
         # moves cursor inside closest parentheses
         "Inside [paren]": Key("escape") + Text("/(.*)") + Key("enter") + Key("right") + Key("c-l"),
+        # auto completes based on tag search
+        "Chew": Key("escape, c-n"),
     }
     extras = [
         Dictation("text"),
