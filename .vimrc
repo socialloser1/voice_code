@@ -155,7 +155,20 @@ map Y y$
 " Map <C-L> (redraw screen) to also turn off search highlighting until the
 " next search
 nnoremap <C-L> :nohl<CR><C-L>
+
+" Some coding mappings "
+imap df =
+imap ,, <c-n>
+imap ,. <>
+imap aa <esc>
+imap kj ()
+
+nmap ; :
  
 " Theme "
 colorscheme ron
+
+" Encoding "
+set encoding=utf-8
+set fileencoding=utf-8
 "------------------------------------------------------------
