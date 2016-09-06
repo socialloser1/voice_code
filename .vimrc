@@ -158,10 +158,21 @@ nnoremap <C-L> :nohl<CR><C-L>
 
 " Some coding mappings "
 imap df =
+imap dfd <space>=<space>
 imap ,, <c-n>
 imap ,. <>
-imap aa <esc>
-imap kj ()
+imap ,., <><left> 
+imap xx <esc>
+imap jk ()
+imap jkj ()<left>
+imap kj {}
+imap kjk {}<left>
+imap jj []
+imap jjj []<left>
+imap ;; ;<enter>
+imap '\' ''<left>
+imap \'\ ""<left>
+imap nnn <esc>o
 
 nmap ; :
  
