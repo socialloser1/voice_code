@@ -28,22 +28,23 @@ from dragonfly import (
 As of right now, this function is not working properly!
 """
 def doc_string():
-    Text('" " " " " " ').execute()
-    Key("left:3").execute()
+    Key("dquote:6, left:3").execute()
 
 """ Function that prints out a Python function definition,
 with the parameter text as the function name.
 """
 def def_function(text):
-    Text("def " + format.snake_case(str(text)) + "():").execute()
-    Key("left:2").execute()
+    Text("def " + format.snake_case(str(text))).execute()
+
+    # symbols added separately
+    Key("lparen, rparen, colon, left:2").execute()
 
 """ Outputs a class definition with the parameter
 text as the class name.
 """
 def def_class(text):
-    Text("class " + format.pascal_case(str(text)) + "():").execute()
-    Key("left:2").execute()
+    Text("class " + format.pascal_case(str(text))).execute()
+    Key("lparen, rparen, colon, left:2").execute()
 
 """ Outputs 'text' = 'i', where multiple words in 'text' are snake-cased."""
 def assign_int(text, i):
@@ -71,16 +72,15 @@ class MainRule( MappingRule ):
 
         # Keywords
         "for": Text("for"),
-        "else": Text("else:") + Key("enter"),
-        "if": Text("if :") + Key("left"),
-        "elif": Text("elif :") + Key("left"),
+        "else": Text("else") + Key("colon, enter"),
+        "if": Text("if ") + Key("colon, left"),
+        "elif": Text("elif ") + Key("colon, left"),
         "import": Text("import "),
-        "test if": Text("if () {") + Key("enter:2") + Text("}"),
-        "while": Text("while :") + Key("left"),
-        "for": Text("for :") + Key("left"),
-        "length": Text("len()") + Key("left"),
-        "print": Text("print()") + Key("left"),
-        "print string": Text("print("")") + Key("left:2"),
+        "while": Text("while ") + Key("colon, left"),
+        "for": Text("for ") + Key("colon, left"),
+        "length": Text("len") + Key("lparen, rparen, left"),
+        "print": Text("print") + Key("lparen, rparen, left"),
+        "print string": Text("print") + Key("lparen, dquote:2, rparen, left:2"),
 	}
 	extras = [
                 Dictation("text"),
