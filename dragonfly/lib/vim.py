@@ -99,7 +99,7 @@ class MainRule(MappingRule):
         # moves cursor inside closest parentheses
         "Inside [paren]": Key("escape") + Text("/(.*)") + Key("enter") + Key("right") + Key("c-l"),
         # auto completes based on tag search
-        "Chew": Key("escape, c-n"),
+        "Chew": Key("c-n"),
     }
     extras = [
         Dictation("text"),
