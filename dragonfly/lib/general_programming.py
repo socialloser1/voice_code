@@ -28,10 +28,10 @@ def assignment(text):
 
 def function_call(text):
     # Assumes snake cased functions
-    call = "." + format.snake_case(text) + "()"
+    call = "." + format.snake_case(text)
     Text(call).execute()
     # Place cursor inside parens
-    Key("left").execute()
+    Key("lparen, rparen, left").execute()
 
 def equals_variable(text):
     Text(" = %s"%(format.snake_case(text))).execute()
@@ -53,28 +53,28 @@ class OperationsRule(MappingRule):
 class SymbolsRule(MappingRule):
     """ Math and programming symbols, as well as indentation """
     mapping = {
-        "Insert new line": Text("\\n"),
-        "Sqrt": Text("sqrt()") + Key("left"),
-        "Leta": Text(" < "),
-        "Greta": Text(" > "),
-        "Legreta": Text(" <>") + Key("left"),
-        "Multi": Text(" * "),
-        "Multek": Text(" *= "),
-        "Div": Text(" / "),
-        "Divek": Text(" /= "),
+        "Insert new line": Key("backslash, n"),
+        "Sqrt": Text("sqrt") + Key("lparen, rparen, left"),
+        "Leta": Key("space, langle, space"),
+        "Greta": Key("space, rangle, space"),
+        "Legreta": Key("space, langle, rangle, left"),
+        "Multi": Key("space, asterisk, space"),
+        "Multek": Key("space, asterisk, equal, space"),
+        "Div": Key("space, slash, space"),
+        "Divek": Key("space, slash, equal, space"),
         "Mod": Key("space, percent, space"),
-        "Not": Text("!"),
-        "Pew": Text(" + "),
-        "Increment": Text("++"),
-        "Pec": Text(" += "),
-        "Nay": Text(" - "),
-        "Decrement": Text("--"),
-        "Nayc": Text(" -= "),
-        "Ek": Text(" = "),
-        "Not ek": Text(" != "),
-        "Ekek": Text(" == "),
-        "Lek": Text(" <= "),
-        "Gek": Text(" >= "),
+        "Not": Key("exclamation"),
+        "Pew": Key("space, plus, space"),
+        "Increment": Key("plus, plus"),
+        "Pec": Key("space, plus, equal, space"),
+        "Nay": Key("space, minus, space"),
+        "Decrement": Key("minus, minus"),
+        "Nayc": Key("space, minus, equal, space"),
+        "Ek": Key("space, equal, space"),
+        "Not ek": Key("space, exclamation, equal, space"),
+        "Ekek": Key("space, equal:2, space"),
+        "Lek": Key("space, langle, equal, space"),
+        "Gek": Key("space, rangle, equal, space"),
         "Doll": Key("dollar"),
         "Krax": Key("lbrace, rbrace, left"),
         "Brax": Key("lbracket, rbracket, left"),
@@ -88,19 +88,19 @@ class SymbolsRule(MappingRule):
         "Amp": Key("ampersand"),
         "Star": Text("*"),
         "Bang": Key("exclamation"),
-        "Or": Text(" || "),
-        "Bitwise or": Text(" | "),
-        "And": Text(" && "),
-        "Bitwise and": Text(" & "),
-        "Ex or": Text(" ^ "),
-        "Bitwise left": Text(" << "),
-        "Bitwise right":Text(" >> "),
+        "Or": Key("space, bar:2, space"),
+        "Bitwise or": Key("space, bar, space"),
+        "And": Key("space, ampersand:2, space"),
+        "Bitwise and": Key("space, ampersand, space"),
+        "Ex or": Key("space, caret, space"),
+        "Bitwise left": Key("langle:2"),
+        "Bitwise right": Key("rangle:2"),
         # python 'and' and 'or'
         "Pand": Text(" and "),
         "Poor": Text(" or "),
         # c style comment and block comment
-        "See comment": Text("// "),
-        "See block comment": Text("/**") + Key("enter:2") + Text("/") + Key("up, space"),
+        "See comment": Key("slash:2, space"),
+        "See block comment": Key("slash, asterisk:2, enter:2, slash, up, space"),
     }
     extras = [
         Integer("n", 1, 8),    
