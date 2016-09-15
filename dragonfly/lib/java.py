@@ -37,7 +37,8 @@ class KeywordsRule(MappingRule):
     }
 
     mapping = {
-        "if": Text("if () {") + Key("enter") + Text("}") + Key("up, end, left:3"),
+        "if": Text("if ") + Key("lparen, rparen, space, lbrace, enter, rbrace, up, end, left:3"),
+        # "if": Text("if () {") + Key("enter") + Text("}") + Key("up, end, left:3"),
         "else if": Text("else if () {") + Key("enter") + Text("}")
         + Key("up, end, left:3"),
         "else": Text("else {}") + Key("left, enter, up, end, enter"),
@@ -83,6 +84,11 @@ def declare_variable_mod(modifier, data_type, text):
 
 def declare_variable(data_type, text):
     declare_variable_mod(None, data_type, text)
+
+def define_class(text):
+    """ Defins a class with name 'text' """
+    Text("public class %s {}"%(format.camel_case(text))).execute()
+    Key("left, enter, up, end, enter").execute()
 
 def define_public_function(data_type, text):
     Text("public %s %s() {"
