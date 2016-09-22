@@ -194,4 +194,7 @@ set iskeyword+=:
 
 " markdown "
 let g:vim_markdown_folding_disabled=1
+
+" C syntax "
+autocmd! FileType c,cpp,java,php call CSyntaxAfter()
 "------------------------------------------------------------
