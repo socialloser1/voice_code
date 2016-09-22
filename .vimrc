@@ -161,7 +161,7 @@ imap df =
 imap dfd <space>=<space>
 imap ,, <c-n>
 imap ,. <>
-imap ,., <><left> 
+imap ,., <><left>
 imap xx <esc>
 imap jk ()
 imap jkj ()<left>
@@ -182,4 +182,16 @@ colorscheme ron
 " Encoding "
 set encoding=utf-8
 set fileencoding=utf-8
+
+" vim-latex settings"
+filetype plugin on
+
+set grepprg=grep\ -nH\ $*
+
+filetype indent on
+let g:tex_flavor='latex'
+set iskeyword+=:
+
+" markdown "
+let g:vim_markdown_folding_disabled=1
 "------------------------------------------------------------
