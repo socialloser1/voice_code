@@ -111,6 +111,7 @@ class SymbolsRule(MappingRule):
 
 class KeywordsRule(MappingRule):
     mapping = {
+        "<text>": Text("%(text)s"), # this line makes sure there's no annoying start space
         "if": Text("if"),
         "while": Text("while"),
         "break": Text("break"),
