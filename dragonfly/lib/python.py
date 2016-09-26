@@ -105,6 +105,15 @@ class KeywordsRule( MappingRule ):
     }
 
 class VariablesRule(MappingRule):
+    # python types
+    data_types = {
+            "integer": "int",
+            "float": "float",
+            "long": "long",
+            "complex": "complex",
+            }
+
+
     mapping = {
         "[use] defunc <text>": Function(def_function, extra = {"text"}),
         "[use] pydoc": Function(doc_string),
@@ -113,10 +122,12 @@ class VariablesRule(MappingRule):
         "[use] for range [<i>]": Text("for i in range(%(i)d):"),
         "[use] for each <text>": Function(for_each, extra = {"text"}),
 	"doc string": Function(doc_string),
+        "cast <data_type>": Text("%(data_type)s") + Key("lparen, rparen, left"),
         }
     extras = [
             Dictation("text"),
             Integer("i", 0, 10000),
+            Choice("data_type", data_types),
     ]
     defaults = {
             "i": 0,
