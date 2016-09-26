@@ -59,16 +59,23 @@ def for_each(text):
     Key("enter").execute()
 
 """ The MappingRule for this module."""
-class MainRule( MappingRule ):
+class KeywordsRule( MappingRule ):
+        # dict of mapping to keywords that require no special characters
+        keywords = {
+                "global": "global ",
+                "true": "True",
+                "false": "False",
+                "break": "break",
+                }
+        
+        # dict of common packages
+        packages = {
+                "system": "sys",
+                "socket": "socket",
+                "threading": "threading",
+                }
 
 	mapping = { 
-        "[use] defunc <text>": Function(def_function, extra = {"text"}),
-        "[use] pydoc": Function(doc_string),
-        "[use] class <text>": Function(def_class, extra = {"text"}),
-        "[use] assign <text> integer [<i>]": Function(assign_int, extra={"text", "i"}),
-        "[use] for range [<i>]": Text("for i in range(%(i)d):"),
-        "[use] for each <text>": Function(for_each, extra = {"text"}),
-	"doc string": Function(doc_string),
 
         # Keywords
         "for": Text("for"),
@@ -81,18 +88,39 @@ class MainRule( MappingRule ):
         "length": Text("len") + Key("lparen, rparen, left"),
         "print": Text("print") + Key("lparen, rparen, left"),
         "print string": Text("print") + Key("lparen, dquote:2, rparen, left:2"),
+        "<keyword>": Text("%(keyword)s"),
 	}
 	extras = [
                 Dictation("text"),
                 Integer("i", 0, 10000),
+                Choice("keyword", keywords),
 	]
 	defaults = {
                 "i": 0,
     }
 
+class VariablesRule(MappingRule):
+    mapping = {
+        "[use] defunc <text>": Function(def_function, extra = {"text"}),
+        "[use] pydoc": Function(doc_string),
+        "[use] class <text>": Function(def_class, extra = {"text"}),
+        "[use] assign <text> integer [<i>]": Function(assign_int, extra={"text", "i"}),
+        "[use] for range [<i>]": Text("for i in range(%(i)d):"),
+        "[use] for each <text>": Function(for_each, extra = {"text"}),
+	"doc string": Function(doc_string),
+        }
+    extras = [
+            Dictation("text"),
+            Integer("i", 0, 10000),
+    ]
+    defaults = {
+            "i": 0,
+    }
+
 # Load and disable grammar
 grammar = Grammar('python')
-grammar.add_rule(MainRule())
+grammar.add_rule(KeywordsRule())
+grammar.add_rule(VariablesRule())
 grammar.add_rule(SymbolsRule())
 grammar.load()
 grammar.disable()
