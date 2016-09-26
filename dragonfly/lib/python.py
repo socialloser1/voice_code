@@ -90,6 +90,8 @@ class KeywordsRule( MappingRule ):
         "print": Text("print") + Key("lparen, rparen, left"),
         "print string": Text("print") + Key("lparen, dquote:2, rparen, left:2"),
         "<keyword>": Text("%(keyword)s"),
+        "try": Text("try ") + Key("colon, left"),
+        "except": Text("except ") + Key("colon, left"),
 	}
 	extras = [
                 Dictation("text"),
