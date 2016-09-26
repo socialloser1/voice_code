@@ -83,6 +83,7 @@ class KeywordsRule( MappingRule ):
         "if": Text("if ") + Key("colon, left"),
         "elif": Text("elif ") + Key("colon, left"),
         "import": Text("import "),
+        "import <package>": Text("import %(package)s"),
         "while": Text("while ") + Key("colon, left"),
         "for": Text("for ") + Key("colon, left"),
         "length": Text("len") + Key("lparen, rparen, left"),
@@ -94,6 +95,7 @@ class KeywordsRule( MappingRule ):
                 Dictation("text"),
                 Integer("i", 0, 10000),
                 Choice("keyword", keywords),
+                Choice("package>", packages),
 	]
 	defaults = {
                 "i": 0,
