@@ -111,6 +111,13 @@ class VariablesRule(MappingRule):
             "float": "float",
             "long": "long",
             "complex": "complex",
+            "string": "str",
+            "unicode": "unicode",
+            "list": "list",
+            "tuple": "tuple",
+            "byte array": "bytearray",
+            "buffer": "buffer",
+            "ex range": "xrange",
             }
 
 
