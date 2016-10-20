@@ -15,16 +15,29 @@ class FormatRule(MappingRule):
     It contains all of the formatting commands. """
 
     languages = {
+        "python": "python",
+        "java": "java",
+        "bash": "bash",
+        "prolog": "prolog",
+        "haskell": "haskell",
+        "vanilla": "",
     }
 
     mapping = {
         "header <i>": Key("hash:%(i)d"),
+        "horz": Key("hyphen:3"),
+        "code block <language>": Key("backtick:3") + Text("%(language)s") + Key("enter, backtick:3, up, end, enter"),
+        "emph [<text>]": Key("underscore:2, left:1") + Text("%(text)s"),
+        "bold [<text>]": Key("asterisk:4, left:2") + Text("%(text)s"),
     }
     extras = [
         Dictation("text"),
         Choice("language", languages),
         Integer("i", 1, 6),
     ]
+    defaults = {
+        "text": "",
+    }
 
 # load and disable the grammar
 grammar = Grammar("markdown")
