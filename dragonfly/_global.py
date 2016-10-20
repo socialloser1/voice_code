@@ -38,7 +38,7 @@ def enable_grammar(choice):
 
 def disable_grammar(choice):
     choice.disable()
-    
+
 def lowercase(text):
     Text(str(text).lower()).execute()
 
@@ -59,12 +59,15 @@ class MainRule( MappingRule ):
     NOTE: There is as of yet NO compatability check between grammar modules, so beware
     when enabling / disabling them!
     """
+
+    # Add new modules here to be able to enable/disable them with voice commands
     grammar_modules = {
         "python": python,
         "vim": vim,
         "general programming": general_programming,
         "see": c_lang,
         "java": java,
+        "markdown": markdown,
     }
 
     def enabled_modules():
@@ -72,7 +75,7 @@ class MainRule( MappingRule ):
             if current.enabled():
                 print(current)
 
-    mapping = { 
+    mapping = {
         "[use] snake <text>": Function( snake_case_format, extra = {"text"} ),
         "[use] camel <text>": Function( camel_case_format, extra = {"text"} ),
         "[use] pascal <text>": Function( pascal_case_format, extra = {"text"} ),
