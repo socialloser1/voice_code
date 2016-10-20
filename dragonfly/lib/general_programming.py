@@ -53,6 +53,7 @@ class OperationsRule(MappingRule):
 class SymbolsRule(MappingRule):
     """ Math and programming symbols, as well as indentation """
     mapping = {
+        "<text>": Text("%(text)s"), # this line makes sure there's no annoying start space
         "Insert new line": Key("backslash, n"),
         "Sqrt": Text("sqrt") + Key("lparen, rparen, left"),
         "Leta": Key("space, langle, space"),
@@ -103,6 +104,7 @@ class SymbolsRule(MappingRule):
         "See block comment": Key("slash, asterisk:2, enter:2, slash, up, space"),
     }
     extras = [
+        Dictation("text"),
         Integer("n", 1, 8),    
     ]
     defaults = {
@@ -111,7 +113,6 @@ class SymbolsRule(MappingRule):
 
 class KeywordsRule(MappingRule):
     mapping = {
-        "<text>": Text("%(text)s"), # this line makes sure there's no annoying start space
         "if": Text("if"),
         "while": Text("while"),
         "break": Text("break"),
