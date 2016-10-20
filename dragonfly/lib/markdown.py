@@ -29,6 +29,8 @@ class FormatRule(MappingRule):
         "code block <language>": Key("backtick:3") + Text("%(language)s") + Key("enter, backtick:3, up, end, enter"),
         "emph [<text>]": Key("underscore:2, left:1") + Text("%(text)s"),
         "bold [<text>]": Key("asterisk:4, left:2") + Text("%(text)s"),
+        "insert image": Key("exclamation, lbracket, rbracket, lparen, rparen, left:3"),
+        "insert link": Key("lbracket, rbracket, lparen, rparen, left:3"),
     }
     extras = [
         Dictation("text"),
