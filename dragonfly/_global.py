@@ -9,7 +9,7 @@ Version: 2016-08-31
 from dragonfly import ( Key, Function, Grammar,
                         Dictation, MappingRule, Text, Choice, Integer )
 
-from lib import (java, general_programming, format, python, c_lang, vim)
+from lib import (java, general_programming, format, python, c_lang, vim, markdown)
 
 # Functions that execute different kinds of formatting on text
 def snake_case_format(text):
