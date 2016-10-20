@@ -17,6 +17,9 @@ class FormatRule(MappingRule):
     mapping = [
     ]
     extras = [
+        Dictation("text"),
+        Choice("language", languages),
+        Integer("i", 0, 10),
     ]
 
 grammar = Grammar("markdown")
