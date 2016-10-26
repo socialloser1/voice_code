@@ -48,8 +48,6 @@ class KeywordsRule(MappingRule):
         + Key("left, enter, up, end, enter"),
         "for range <i> decrement": Text("for (int i = %(i)s; 0 <= i; i--) {}")
         + Key("left, enter, up, end, enter"),
-        "include": Text("#include <>") + Key("left"),
-        "include <package>": Text("#include <%(package)s.h>"),
         "print": Text("System.out.println();") + Key("left:2"),
         "import": Text("import ;") + Key("left"),
         "import <package>": Key("escape, colon, 1, enter, O") + Text("import %(package)s;"),
@@ -79,7 +77,6 @@ def declare_variable_mod(modifier, data_type, text):
         declaration = "%s %s;"%(data_type, text)
     else:
         declaration = "%s %s %s;"%(modifier, data_type, text)
-    
     Text(declaration).execute()
 
 def declare_variable(data_type, text):
@@ -99,7 +96,7 @@ def define_private_function(data_type, text):
     Text("private %s %s() {"
             %(data_type, format.snake_case(text))).execute()
     Key("enter, rbrace, up, end, left:3").execute()
-    
+
 def define_main_function():
     Text("public static void main(String[] args) {").execute()
     Key("enter, rbrace, up, end, enter").execute()
