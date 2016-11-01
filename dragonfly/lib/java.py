@@ -23,7 +23,7 @@ from dragonfly import (
 )
 
 def equals_variable(text):
-    Text(" = %s;"%(format.snake_case(text))).execute()
+    Text(" = %s;"%(format.camel_case(text))).execute()
 
 
 """ MappingRule for keywords """
@@ -73,7 +73,7 @@ class KeywordsRule(MappingRule):
 
 """ Below is is everythong needed to declare functions, classes and variables """
 def declare_variable_mod(modifier, data_type, text):
-    text = format.snake_case(text)
+    text = format.camel_case(text)
     if modifier == None or modifier == "":
         declaration = "%s %s;"%(data_type, text)
     else:
@@ -90,12 +90,12 @@ def define_class(text):
 
 def define_public_function(data_type, text):
     Text("public %s %s() {"
-            %(data_type, format.snake_case(text))).execute()
+            %(data_type, format.camel_case(text))).execute()
     Key("enter, rbrace, up, end, left:3").execute()
 
 def define_private_function(data_type, text):
     Text("private %s %s() {"
-            %(data_type, format.snake_case(text))).execute()
+            %(data_type, format.camel_case(text))).execute()
     Key("enter, rbrace, up, end, left:3").execute()
 
 def define_main_function():
