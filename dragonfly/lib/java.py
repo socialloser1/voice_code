@@ -85,8 +85,8 @@ def declare_variable(data_type, text):
 
 def define_class(text):
     """ Defins a class with name 'text' """
-    Text("public class %s {}"%(format.camel_case(text))).execute()
-    Key("left, enter, up, end, enter").execute()
+    Text("public class %s "%(format.pascal_case(text))).execute()
+    Key("lbrace, rbrace, left, enter, up, end").execute()
 
 def define_public_function(data_type, text):
     Text("public %s %s() {"
@@ -102,11 +102,6 @@ def define_main_function():
     Text("public static void main(String[] args) {").execute()
     Key("enter, rbrace, up, end, enter").execute()
 
-def pointer_to(text):
-    Text("&%s"%(format.snake_case(text))).execute()
-
-def deref_pointer(text):
-    Text("*%s"%(format.snake_case(text))).execute()
 
 def declare_object_with_type(object_type, wrapper):
     Text(object_type).execute()
@@ -145,6 +140,7 @@ class VariablesRule(MappingRule):
             }
 
     mapping = {
+            "define class <text>": Function(define_class, extra = {"text"}),
             "declare <text> as <data_type>": Function(declare_variable, extra = {"data_type", "text"}),
             "defunc main": Function(define_main_function),
             "defunc public <text> return <data_type>": Function(define_public_function, extra = {"data_type", "text"}),
