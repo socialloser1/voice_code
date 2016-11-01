@@ -100,12 +100,15 @@ class MainRule(MappingRule):
         "Inside [paren]": Key("escape") + Text("/(.*)") + Key("enter") + Key("right") + Key("c-l"),
         # auto completes based on tag search
         "Chew": Key("c-n"),
+        "Del <i> prev": Key("escape, %(i)d, d, b"),
+        "Del <i> next": Key("escape, %(i)d, d, w"),
     }
     extras = [
         Dictation("text"),
         Choice("formatting", formats),
 	Choice("insert", insert_points),
         Choice("command", commands),
+        Integer("i", 1, 9),
         Integer("line", 1, 10000),
     ]
     defaults = {
