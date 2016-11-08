@@ -16,38 +16,11 @@ def format_text(text, format_function):
     output = format_function(text)
     Text(output).execute()
 
-def snake_case_format(text):
-    Text( format.snake_case( str( text ) ) ).execute()
-
-def camel_case_format( text ):
-    Text( format.camel_case( str( text ) ) ).execute()
-
-def pascal_case_format( text ):
-    Text( format.pascal_case( str( text ) ) ).execute()
-
-def concatenated_lower( text ):
-    Text( format.no_space_lower( str( text ) ) ).execute()
-
-def concatenated_upper( text ):
-    Text( format.no_space_upper( str( text ) ) ).execute()
-
-def spell_lowercase( text ):
-    Text(format.lowercase_letters(str(text))).execute()
-
-def spell_uppercase( text ):
-    Text(format.uppercase_letters(str(text))).execute()
-
 def enable_grammar(choice):
 	choice.enable()
 
 def disable_grammar(choice):
     choice.disable()
-
-def lowercase(text):
-    Text(str(text).lower()).execute()
-
-def uppercase(text):
-    Text(str(text).upper()).execute()
 
 def print_date(day, month):
     Text(format.format_date(month, day)).execute()
