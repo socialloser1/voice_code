@@ -13,25 +13,25 @@ from lib import (java, general_programming, format, python, c_lang, vim, markdow
 
 # Functions that execute different kinds of formatting on text
 def snake_case_format(text):
-	Text( format.snake_case( str( text ) ) ).execute()
+    Text( format.snake_case( str( text ) ) ).execute()
 
 def camel_case_format( text ):
-	Text( format.camel_case( str( text ) ) ).execute()
+    Text( format.camel_case( str( text ) ) ).execute()
 
 def pascal_case_format( text ):
-	Text( format.pascal_case( str( text ) ) ).execute()
+    Text( format.pascal_case( str( text ) ) ).execute()
 
 def concatenated_lower( text ):
-	Text( format.no_space_lower( str( text ) ) ).execute()
+    Text( format.no_space_lower( str( text ) ) ).execute()
 
 def concatenated_upper( text ):
-	Text( format.no_space_upper( str( text ) ) ).execute()
+    Text( format.no_space_upper( str( text ) ) ).execute()
 
 def spell_lowercase( text ):
-	Text(format.lowercase_letters(str(text))).execute()
+    Text(format.lowercase_letters(str(text))).execute()
 
 def spell_uppercase( text ):
-	Text(format.uppercase_letters(str(text))).execute()
+    Text(format.uppercase_letters(str(text))).execute()
 
 def enable_grammar(choice):
 	choice.enable()
