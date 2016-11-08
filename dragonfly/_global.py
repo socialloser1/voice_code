@@ -60,6 +60,26 @@ class MainRule( MappingRule ):
     when enabling / disabling them!
     """
 
+    mapping = {
+        "[use] snake <text>": Function( snake_case_format, extra = {"text"} ),
+        "[use] camel <text>": Function( camel_case_format, extra = {"text"} ),
+        "[use] pascal <text>": Function( pascal_case_format, extra = {"text"} ),
+        "[use] cocol <text>": Function( concatenated_lower, extra = {"text"} ),
+        "[use] cocup <text>": Function( concatenated_upper, extra = {"text"} ),
+        "[use] spell low <text>": Function( spell_lowercase, extra = {"text"} ),
+        "[use] spell high <text>": Function( spell_uppercase, extra = {"text"} ),
+        "[use] lowercase <text>": Function(lowercase, extra = {"text"}),
+        "[use] uppercase <text>": Function(uppercase, extra = {"text"}),
+        "[use] date <day> of <month>": Function(format.format_date, extra = {"month, day"})
+    }
+    extras = [
+        Dictation("text"),
+        Choice("month", format.months),
+        Integer("day", 1, 31),
+    ]
+
+class GrammarRule(MappingRule):
+    """ This rule handles enabling and disabling of grammars """
     # Add new modules here to be able to enable/disable them with voice commands
     grammar_modules = {
         "python": python,
@@ -76,25 +96,12 @@ class MainRule( MappingRule ):
                 print(current)
 
     mapping = {
-        "[use] snake <text>": Function( snake_case_format, extra = {"text"} ),
-        "[use] camel <text>": Function( camel_case_format, extra = {"text"} ),
-        "[use] pascal <text>": Function( pascal_case_format, extra = {"text"} ),
-        "[use] cocol <text>": Function( concatenated_lower, extra = {"text"} ),
-        "[use] cocup <text>": Function( concatenated_upper, extra = {"text"} ),
-        "[use] spell low <text>": Function( spell_lowercase, extra = {"text"} ),
-        "[use] spell high <text>": Function( spell_uppercase, extra = {"text"} ),
         "[use] enable grammar <choice>": Function(enable_grammar, extra = {"choice"}),
-        "[use] disable grammar <choice>" : Function(disable_grammar, extra = {"choice"}),
-        "[use] lowercase <text>": Function(lowercase, extra = {"text"}),
-        "[use] uppercase <text>": Function(uppercase, extra = {"text"}),
         "[use] list enabled modules": Function(enabled_modules),
-        "[use] date <day> of <month>": Function(format.format_date, extra = {"month, day"})
+        "[use] disable grammar <choice>" : Function(disable_grammar, extra = {"choice"}),
     }
     extras = [
-        Dictation("text"),
         Choice("choice", grammar_modules),
-        Choice("month", format.months),
-        Integer("day", 1, 31),
     ]
 
 def switch_desktop(direction):
@@ -124,5 +131,6 @@ class WindowsRule(MappingRule):
 
 grammar = Grammar('global')
 grammar.add_rule(MainRule())
+grammar.add_rule(GrammarRule())
 grammar.add_rule(WindowsRule())
 grammar.load()
