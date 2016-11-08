@@ -12,6 +12,10 @@ from dragonfly import ( Key, Function, Grammar,
 from lib import (java, general_programming, format, python, c_lang, vim, markdown)
 
 # Functions that execute different kinds of formatting on text
+def format_text(text, format_function):
+    output = format_function(text)
+    Text(output).execute()
+
 def snake_case_format(text):
     Text( format.snake_case( str( text ) ) ).execute()
 
@@ -59,20 +63,25 @@ class MainRule( MappingRule ):
     NOTE: There is as of yet NO compatability check between grammar modules, so beware
     when enabling / disabling them!
     """
+    functions = {
+            "snake": "format.snake_case",
+            "camel": "format.camel_case",
+            }
 
     mapping = {
-        "[use] snake <text>": Function( snake_case_format, extra = {"text"} ),
-        "[use] camel <text>": Function( camel_case_format, extra = {"text"} ),
-        "[use] pascal <text>": Function( pascal_case_format, extra = {"text"} ),
-        "[use] cocol <text>": Function( concatenated_lower, extra = {"text"} ),
-        "[use] cocup <text>": Function( concatenated_upper, extra = {"text"} ),
-        "[use] spell low <text>": Function( spell_lowercase, extra = {"text"} ),
-        "[use] spell high <text>": Function( spell_uppercase, extra = {"text"} ),
-        "[use] lowercase <text>": Function(lowercase, extra = {"text"}),
-        "[use] uppercase <text>": Function(uppercase, extra = {"text"}),
+        "[use] snake <text>": Function(format_text, text = "%(text)s", format_function = format.snake_case),
+        "[use] camel <text>": Function(format_text, text = "%(text)s", format_function = format.camel_case),
+        "[use] pascal <text>": Function(format_text, text = "%(text)s", format_function = format.pascal_case),
+        "[use] cocol <text>": Function(format_text, text = "%(text)s", format_function = format.no_space_lower),
+        "[use] cocup <text>": Function(format_text, text = "%(text)s", format_function = format.no_space_upper),
+        "[use] spell low <text>": Function(format_text, text = "%(text)s", format_function = format.lowercase_letters),
+        "[use] spell high <text>": Function(format_text, text = "%(text)s", format_function = format.uppercase_letters),
+        "[use] lowercase <text>": Text("%(text)s".lower()),
+        "[use] uppercase <text>": Text("$(text)s".upper()),
         "[use] date <day> of <month>": Function(format.format_date, extra = {"month, day"})
     }
     extras = [
+        Choice("function", functions),
         Dictation("text"),
         Choice("month", format.months),
         Integer("day", 1, 31),
