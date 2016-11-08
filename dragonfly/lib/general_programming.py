@@ -151,7 +151,7 @@ class MainRule(MappingRule):
         "general programming disable <rule>": Function(disable_rule, extra = {"rule"})
     }
     extras = [
-        Choice("rule", rules),        
+        Choice("rule", rules),
     ]
 
 # Load and is able grammar
