@@ -90,10 +90,10 @@ class GrammarRule(MappingRule):
         "markdown": markdown,
     }
 
-    def enabled_modules():
+    def enabled_modules(self):
         for current in grammar_modules:
-            if current.enabled():
-                print(current)
+            if current.enabled:
+                print current
 
     mapping = {
         "[use] enable grammar <choice>": Function(enable_grammar, extra = {"choice"}),
